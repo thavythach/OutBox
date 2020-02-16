@@ -11,6 +11,8 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 // import FormGroup from '@material-ui/core/FormGroup';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
+import ObDrawer from '../obDrawer/obDrawer.component.jsx';
+
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -53,9 +55,8 @@ export default function MenuAppBar(props) {
       </FormGroup> */}
       <AppBar position="static">
         <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            <MenuIcon />
-          </IconButton>
+         
+        <ObDrawer/>
           <Typography variant="h6" className={classes.title}>
             OutBox
           </Typography>
