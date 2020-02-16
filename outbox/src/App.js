@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
+import ObDrawer from './components/obDrawer/obDrawer.component.jsx';
 
 class App extends Component {
 
@@ -8,14 +9,17 @@ class App extends Component {
     super();
 
     this.state = {
-      hello: 5
     };
+
   }
+
 
   render(){
     return(
       <div className="App">
         <h1>Hello, World!</h1>
+
+        <ObDrawer />
       </div>
     );
   }
