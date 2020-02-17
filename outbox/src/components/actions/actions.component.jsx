@@ -16,11 +16,16 @@ class Actions extends React.Component {
 
   pinHandler() {
     this.setState(
-        {isPinned: !this.state.isPinned}, () => {
+        {
+            isPinned: !this.state.isPinned
+        }
+        , () => {
             if(this.state.isPinned){
                 console.log("Email Pinned");
+                // TODO: add to list of emails in DB
             } else {
                 console.log("Email Unpinned");
+                // TODO: remove from list of emails in DB
             }
         }
     );
