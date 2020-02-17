@@ -3,6 +3,7 @@ import './App.css';
 
 import MenuAppBar from './components/menuappbar/menuappbar.component.jsx'
 import ObDrawer from './components/obDrawer/obDrawer.component.jsx';
+import PinningAction from './components/pinningaction/pinningaction.component.jsx';
 
 class App extends Component {
 
@@ -19,8 +20,7 @@ class App extends Component {
   render(){
     return(
       <div className="App">
-        
-       <MenuAppBar color={this.state.color}></MenuAppBar>
+        <PinningAction />
       </div>
     );
   }
