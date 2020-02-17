@@ -4,23 +4,16 @@ import IconButton from '@material-ui/core/IconButton';
 
 
 
-function PinningAction() {
-    const [state, setState] = React.useState({
-        pin: false,
-    });
-
-    const handleAction = () => {
-        setState({ ...state, pin: !state.pin});
-    };
-
-    return(
-        <div className="PinningAction">
-            <p>hello</p>
-            <IconButton onClick={() => { handleAction() }}>
-                <Icon icon="pin" color={ state.pin ? "blue" : "gray"}></Icon>
-            </IconButton>
-        </div>
-    );
+class PinningAction extends React.Component {  
+    render(props){
+        return(
+            <div className="PinningAction">
+                <IconButton onClick={() => { this.props.action(); }}>
+                    <Icon icon="pin" color={ this.props.isPinned ? "blue" : "gray" }></Icon>
+                </IconButton>
+            </div>
+        );
+    }
 }
 
 export default PinningAction;
