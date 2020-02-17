@@ -1,12 +1,15 @@
 import React from 'react';
-import PinSVG from '../../icons/pin/pin.svg.component';
-
+import Icon from '../../icons/pin/pin.svg.component';
 
 
 function PinningAction() {
     return(
-        <PinSVG />
+        <div className="PinningAction">
+            <p>hello</p>
+            <Icon icon="pin" color="blue"></Icon>
+            <Icon icon="pin" color="gray"></Icon>
+        </div>
     );
 }
 
-export default PinningAction
+export default PinningAction;
