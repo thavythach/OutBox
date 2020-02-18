@@ -5,6 +5,10 @@ import Popover from '@material-ui/core/Popover';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
+import Divider from '@material-ui/core/Divider';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
 
 const styles = theme => ({
     typography: {
@@ -20,7 +24,6 @@ class SnoozeAction extends React.Component {
         this.state = {
             anchorEl: null,
             open: false,
-            
         };
 
     }
@@ -49,7 +52,7 @@ class SnoozeAction extends React.Component {
     render(props){
         let id = this.state.open ? 'simple-popover' : undefined;
         const {classes} = this.props;
-        
+
         return(
             <div className="SnoozeAction">
                 <IconButton onClick={this.sendSnoozeData}>
@@ -69,10 +72,14 @@ class SnoozeAction extends React.Component {
                         vertical: 'top',
                         horizontal: 'right',
                     }}
-                    >
-                    <Typography className={classes.typography}>
-                        The content of the Popover.
-                    </Typography>
+                >
+                    <List className={classes.typography}>
+                        <ListItem>Snooze until...</ListItem>
+                        <Divider/>
+                        <ListItem>
+                            <ListItemText primary="Work"/>&nbsp;<ListItemText secondary="Jan 7, 2014" />
+                        </ListItem>
+                    </List>
                 </Popover>
             </div>
         );
