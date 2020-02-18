@@ -1,0 +1,34 @@
+.SnoozeDateTime {
+    /* background-color: blue; */
+    /* clear: both; */
+    width:200px;
+    background-color:red;
+    margin:0 auto;
+    position:relative
+}
+
+.right {
+    width:150px;
+    border:1px solid white;
+    position:absolute; 
+    right:0
+}
+.left {
+  width:150px;
+  border:1px solid green;
+  position:absolute;
+  left: 0;
+}
+
+.SnoozeTimeRight {
+    float: right !important;
+}
+
+.SnoozeTimeLeft {
+    float: left !important;
+    /* padding-left: 80px; */
+}
+
+.Snooze {
+    position: fixed;
+}

@@ -2,17 +2,19 @@ import React from 'react';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import IconButton from '@material-ui/core/IconButton';
 import Popover from '@material-ui/core/Popover';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
+import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import Divider from '@material-ui/core/Divider';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 
+import './snoozeaction.styles.css';
+
 const styles = theme => ({
     typography: {
-        padding: theme.spacing(2),
+        padding: theme.spacing(3, 2),
+        maxWidth: 360
     },
 });
 
@@ -76,8 +78,24 @@ class SnoozeAction extends React.Component {
                     <List className={classes.typography}>
                         <ListItem>Snooze until...</ListItem>
                         <Divider/>
-                        <ListItem>
-                            <ListItemText primary="Work"/>&nbsp;<ListItemText secondary="Jan 7, 2014" />
+
+                        <ListItem className="SnoozeDateTime">
+                            <ListItemText className="left" primary="Later Today"/>
+                            <ListItemText className="right" secondary="Tue, 8:00 AM"/>
+                        </ListItem>
+                        <ListItem className="SnoozeDateTime">
+                            <ListItemText className="SnoozeTimeRight" primary="Tomorrow"/>
+                            <ListItemText className="SnoozeTimeLeft"  secondary="Tue, 8:00 AM"/>
+                            <ListItemText className="Snooze"/>
+                        </ListItem>
+                        <ListItem className="SnoozeDateTime">
+                            <ListItemText className="SnoozeTimeRight" primary="Next week"/>
+                            <ListItemText className="SnoozeTimeLeft"  secondary="Tue, 8:00 AM"/>
+                            
+                        </ListItem>
+                        <ListItem className="SnoozeDateTime">
+                            <ListItemText className="SnoozeTimeRight" primary="Someday"/>
+                            <ListItemText className="SnoozeTimeLeft"  secondary="Tue, 8:00 AM"/>
                         </ListItem>
                     </List>
                 </Popover>
