@@ -1,20 +1,27 @@
 import React from 'react';
 import PinningAction from '../pinningaction/pinningaction.component.jsx';
+import SnoozeAction from '../snoozeaction/snoozeaction.component.jsx';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
 
 class Actions extends React.Component {
 
-  constructor(props){
-    super(props);
+    constructor(props){
+        super(props);
 
-    this.pinHandler = this.pinHandler.bind(this);
+        this.pinHandler = this.pinHandler.bind(this);
 
-    this.state = {
-      isPinned: false, 
-    };
+        this.state = {
+            isPinned: false, 
+            snoozeDate: null,
+        };
 
-  }
+    }
 
-  pinHandler() {
+    snoozeCallback = (date) => {
+        this.setState({snoozeDate: date}, () => {console.log(this.state.snoozeDate);});
+    }
+
+    pinHandler() {
     this.setState(
         {
             isPinned: !this.state.isPinned
@@ -29,15 +36,18 @@ class Actions extends React.Component {
             }
         }
     );
-
-
-  }
-
+    }
 
   render(){
     return(
       <div className="App">
-        <PinningAction isPinned={this.state.isPinned} action={this.pinHandler} /> 
+        <h1>Hello, World!</h1>
+        <ButtonGroup>
+            <PinningAction isPinned={this.state.isPinned} action={this.pinHandler} /> 
+            <SnoozeAction snoozeCallback={this.snoozeCallback} />
+        </ButtonGroup>
+
+
       </div>
     );
   }

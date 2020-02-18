@@ -2,8 +2,6 @@ import React from 'react';
 import Icon from '../../icons/pin/pin.svg.component';
 import IconButton from '@material-ui/core/IconButton';
 
-
-
 class PinningAction extends React.Component {  
     render(props){
         return(

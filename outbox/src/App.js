@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import './App.css';
 
-import MenuAppBar from './components/menuappbar/menuappbar.component.jsx'
-import ObDrawer from './components/obDrawer/obDrawer.component.jsx';
+// import MenuAppBar from './components/menuappbar/menuappbar.component.jsx'
+// import ObDrawer from './components/obDrawer/obDrawer.component.jsx';
 import Actions from './components/actions/actions.component.jsx';
 
 class App extends Component {
