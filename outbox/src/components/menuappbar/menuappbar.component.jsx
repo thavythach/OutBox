@@ -8,38 +8,15 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import ObDrawer from '../obDrawer/obDrawer.component.jsx';
-
-// const useStyles = makeStyles(theme => ({
-//   root: {
-//     flexGrow: 1,
-//     color: props=>props.color
-//   },
-//   menuButton: {
-//     marginRight: theme.spacing(2),
-//   },
-//   title: {
-//     flexGrow: 1,
-//   },
-// }));
-
-let styles = makeStyles(theme => ({
-  root: {
-    flexGrow: 1,
-  },
-  title: { 
-    flexGrow: 2,
-  }
-}));
+import './menuappbar.styles.css';
 
 export default class MenuAppBar extends React.Component {
-
   constructor() {
     super();
     this.state = {
       auth: true,
       anchorEl: false,
       setAnchorEl: null,
-      
     }
   }
 
@@ -57,13 +34,12 @@ export default class MenuAppBar extends React.Component {
   };
   
   render() {
-    const userStyles = styles
     return (
-      <div className={userStyles.root}>
+      <div className="root">
         <AppBar position="static">
           <Toolbar>
           <ObDrawer/>
-            <Typography variant="h6" className={userStyles.title}>
+            <Typography variant="h6" className="title">
               OutBox
             </Typography>
             {this.state.auth && (
