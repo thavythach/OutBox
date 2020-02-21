@@ -40,8 +40,6 @@ class Actions extends React.Component {
             <PinningAction pinCallback={this.pinCallback}/> 
             <SnoozeAction snoozeCallback={this.snoozeCallback} />
         </ButtonGroup>
-
-
       </div>
     );
   }

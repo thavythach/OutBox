@@ -49,8 +49,8 @@ class SnoozeAction extends React.Component {
         );
     }
 
-    setPickDateTime = bool  => {
-        this.setState({pickDateTime: bool});
+    setPickDateTimeTrue = () => {
+        this.setState({pickDateTime: true}, () => {console.log(this.state.pickDateTime)});
     }
     
     sendSnoozeData = event => {
@@ -62,6 +62,10 @@ class SnoozeAction extends React.Component {
             console.log("Snooze Popover opened.");
         });
         this.props.snoozeCallback("02/17/20");
+    }
+
+    DTCallback = (data) => {
+        this.setState({pickDateTime: false}, () => {console.log("yeet: " +this.state.pickDateTime)});
     }
     
     render(props){
@@ -119,16 +123,13 @@ class SnoozeAction extends React.Component {
 
                     <Divider/>
 
-                    <MenuItem onClick={this.setPickDateTime(true)} className="SnoozeDateTime">
+                    <MenuItem onClick={this.setPickDateTimeTrue} className="SnoozeDateTime">
                         <ListItemIcon>
-                            <InsertInvitationIcon fontSize="small"/>
+                            <InsertInvitationIcon fontSize="large"/>
                         </ListItemIcon>
-                        <Typography variant="inherit" noWrap>
-                            Pick date & time
-                        </Typography>
-                        <OBDateTimePicker  />
-                    </MenuItem>
+                        <OBDateTimePicker isClicked={this.state.pickDateTime} DTCallback={this.DTCallback}/>
 
+                    </MenuItem>
 
                 </Menu>
 
