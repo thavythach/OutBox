@@ -1,17 +1,13 @@
 import React from 'react';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import IconButton from '@material-ui/core/IconButton';
-import Popover from '@material-ui/core/Popover';
-import { withStyles } from '@material-ui/core/styles';
-import PropTypes from 'prop-types';
+// import { withStyles } from '@material-ui/core/styles';
+// import PropTypes from 'prop-types';
 import Divider from '@material-ui/core/Divider';
-import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Fade from '@material-ui/core/Fade';
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import InsertInvitationIcon from '@material-ui/icons/InsertInvitation';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -20,12 +16,12 @@ import Typography from '@material-ui/core/Typography';
 
 import './snoozeaction.styles.css';
 
-const styles = theme => ({
-    typography: {
-        padding: theme.spacing(3, 2),
-        maxWidth: 360
-    },
-});
+// const styles = theme => ({
+//     typography: {
+//         padding: theme.spacing(3, 2),
+//         maxWidth: 360
+//     },
+// });
 
 class SnoozeAction extends React.Component {  
 
@@ -61,8 +57,8 @@ class SnoozeAction extends React.Component {
     }
     
     render(props){
-        let id = this.state.open ? 'simple-popover' : undefined;
-        const {classes} = this.props;
+        // let id = this.state.open ? 'simple-popover' : undefined;
+        // const {classes} = this.props;
 
         return(
             <div className="SnoozeAction">
@@ -135,8 +131,9 @@ class SnoozeAction extends React.Component {
     }
 }
 
-SnoozeAction.propTypes = {
-    classes: PropTypes.object.isRequired,
-};
+// SnoozeAction.propTypes = {
+//     classes: PropTypes.object.isRequired,
+// };
 
-export default withStyles(styles)(SnoozeAction);
+// export default withStyles(styles)(SnoozeAction);
+export default (SnoozeAction);

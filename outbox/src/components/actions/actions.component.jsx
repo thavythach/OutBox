@@ -8,10 +8,8 @@ class Actions extends React.Component {
     constructor(props){
         super(props);
 
-        this.pinHandler = this.pinHandler.bind(this);
-
         this.state = {
-            isPinned: false, 
+            isPinned: null,
             snoozeDate: null,
         };
 
@@ -21,21 +19,17 @@ class Actions extends React.Component {
         this.setState({snoozeDate: date}, () => {console.log(this.state.snoozeDate);});
     }
 
-    pinHandler() {
-    this.setState(
-        {
-            isPinned: !this.state.isPinned
-        }
-        , () => {
-            if(this.state.isPinned){
+    pinCallback  =  (data)  =>  {
+        this.setState({isPinned: data}, () => {
+            if (this.state.isPinned){
                 console.log("Email Pinned");
                 // TODO: add to list of emails in DB
             } else {
                 console.log("Email Unpinned");
                 // TODO: remove from list of emails in DB
             }
-        }
-    );
+        });
+
     }
 
   render(){
@@ -43,7 +37,7 @@ class Actions extends React.Component {
       <div className="App">
         <h1>Hello, World!</h1>
         <ButtonGroup>
-            <PinningAction isPinned={this.state.isPinned} action={this.pinHandler} /> 
+            <PinningAction pinCallback={this.pinCallback}/> 
             <SnoozeAction snoozeCallback={this.snoozeCallback} />
         </ButtonGroup>
 
