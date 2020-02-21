@@ -14,6 +14,8 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import MenuList from '@material-ui/core/MenuList';
 import Typography from '@material-ui/core/Typography';
 
+import OBDateTimePicker from '../datetimepicker/datetimepicker.component.jsx';
+
 import './snoozeaction.styles.css';
 
 // const styles = theme => ({
@@ -31,6 +33,8 @@ class SnoozeAction extends React.Component {
         this.state = {
             anchorEl: null,
             open: false,
+            pickDateTime: false,
+            date: new Date(),
         };
 
     }
@@ -43,6 +47,10 @@ class SnoozeAction extends React.Component {
                 console.log("Snooze Popover closed.");
             }
         );
+    }
+
+    setPickDateTime = bool  => {
+        this.setState({pickDateTime: bool});
     }
     
     sendSnoozeData = event => {
@@ -111,13 +119,14 @@ class SnoozeAction extends React.Component {
 
                     <Divider/>
 
-                    <MenuItem onClick={this.handleClose} className="SnoozeDateTime">
+                    <MenuItem onClick={this.setPickDateTime(true)} className="SnoozeDateTime">
                         <ListItemIcon>
                             <InsertInvitationIcon fontSize="small"/>
                         </ListItemIcon>
                         <Typography variant="inherit" noWrap>
                             Pick date & time
                         </Typography>
+                        <OBDateTimePicker  />
                     </MenuItem>
 
 
