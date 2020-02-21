@@ -15,6 +15,7 @@ import MenuList from '@material-ui/core/MenuList';
 import Typography from '@material-ui/core/Typography';
 
 import OBDateTimePicker from '../datetimepicker/datetimepicker.component.jsx';
+import SnoozeItem from '../snoozeitem/snoozeitem.component.jsx';
 
 import './snoozeaction.styles.css';
 
@@ -30,11 +31,13 @@ class SnoozeAction extends React.Component {
     constructor(props){
         super(props);
 
+        this.currentDate = new Date();
+
         this.state = {
             anchorEl: null,
             open: false,
             pickDateTime: false,
-            date: new Date(),
+            date: this.currentDate,
         };
 
     }
@@ -64,8 +67,12 @@ class SnoozeAction extends React.Component {
         this.props.snoozeCallback("02/17/20");
     }
 
-    DTCallback = (data) => {
-        this.setState({pickDateTime: false}, () => {console.log("yeet: " +this.state.pickDateTime)});
+    DTCallback = (picked, newDate) => {
+        console.log("new date: " + this.state.date);
+        this.setState({pickDateTime: picked, date: newDate}, () => {
+            console.log("yeet: " +this.state.pickDateTime);
+            console.log("new date: " + this.state.date);
+        });
     }
     
     render(props){
@@ -91,35 +98,11 @@ class SnoozeAction extends React.Component {
 
                     <Divider/>
 
-                    <MenuItem onClick={this.handleClose} className="SnoozeDateTime">
-                        <Grid container spacing={3}><Grid item xs={12} sm={6}>Later today</Grid>
-                            <Grid item xs={12} sm={6} className="gridAlignRight">Mon, 6:00 PM</Grid>
-                        </Grid>
-                    </MenuItem>
-
-                    <MenuItem onClick={this.handleClose} className="SnoozeDateTime">
-                        <Grid container spacing={3}><Grid item xs={12} sm={6}>Tomorrow</Grid>
-                            <Grid item xs={12} sm={6} className="gridAlignRight">Tue, 8:00 AM</Grid>
-                        </Grid>
-                    </MenuItem>
-
-                    <MenuItem onClick={this.handleClose} className="SnoozeDateTime">
-                        <Grid container spacing={3}><Grid item xs={12} sm={6}>Later this week</Grid>
-                            <Grid item xs={12} sm={6} className="gridAlignRight">Wed, 8:00 AM</Grid>
-                        </Grid>
-                    </MenuItem>
-
-                    <MenuItem onClick={this.handleClose} className="SnoozeDateTime">
-                        <Grid container spacing={3}><Grid item xs={12} sm={6}>This weekend</Grid>
-                            <Grid item xs={12} sm={6} className="gridAlignRight">Sat, 8:00 AM</Grid>
-                        </Grid>
-                    </MenuItem>
-
-                    <MenuItem onClick={this.handleClose} className="SnoozeDateTime">
-                        <Grid container spacing={3}><Grid item xs={12} sm={6}>Next week</Grid>
-                            <Grid item xs={12} sm={6} className="gridAlignRight">Mon, 8:00 AM</Grid>
-                        </Grid>
-                    </MenuItem>
+                    <SnoozeItem itemTitle="Later Today" itemDay="Mon" itemTime="6:00 PM"/>
+                    <SnoozeItem itemTitle="Tomorrow" itemDay="Tue" itemTime="8:00 AM"/>
+                    <SnoozeItem itemTitle="Later this week" itemDay="Wed" itemTime="8:00 AM"/>
+                    <SnoozeItem itemTitle="This weekend" itemDay="Sat" itemTime="8:00 AM"/>
+                    <SnoozeItem itemTitle="Next Week" itemDay="Mon" itemTime="8:00 AM"/>
 
                     <Divider/>
 

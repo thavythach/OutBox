@@ -16,7 +16,7 @@ class OBDateTimePicker extends React.Component {
             }
             , () => {
  
-                this.props.DTCallback(this.state.isOpen);
+                this.props.DTCallback(this.state.isOpen, this.state.selectedDate);
             }
         );
     }
@@ -28,7 +28,7 @@ class OBDateTimePicker extends React.Component {
             }
             , () => {
  
-                this.props.DTCallback(this.state.isOpen);
+                this.props.DTCallback(this.state.isOpen, this.state.selectedDate);
             }
         );
     }
