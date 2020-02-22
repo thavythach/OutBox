@@ -10,20 +10,12 @@ class App extends Component {
   constructor(props){
     super(props);
 
-    this.pinHandler = this.pinHandler.bind(this);
-
     this.state = {
       color: '#655b39',
-      isPinned: false, 
     };
 
 
   }
-
-  pinHandler() {
-    this.setState({isPinned: !this.state.isPinned});
-  }
-
 
   render(){
     return(

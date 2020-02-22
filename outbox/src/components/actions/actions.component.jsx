@@ -16,7 +16,7 @@ class Actions extends React.Component {
     }
 
     snoozeCallback = (date) => {
-        this.setState({snoozeDate: date}, () => {console.log(this.state.snoozeDate);});
+        this.setState({snoozeDate: date}, () => {console.log("the real date: " + this.state.snoozeDate);});
     }
 
     pinCallback  =  (data)  =>  {
@@ -40,8 +40,6 @@ class Actions extends React.Component {
             <PinningAction pinCallback={this.pinCallback}/> 
             <SnoozeAction snoozeCallback={this.snoozeCallback} />
         </ButtonGroup>
-
-
       </div>
     );
   }
