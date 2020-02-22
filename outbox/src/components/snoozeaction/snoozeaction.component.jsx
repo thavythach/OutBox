@@ -100,23 +100,49 @@ class SnoozeAction extends React.Component {
     createSnoozeItems = () => {
 
         const snoozeData = [];
-        let tmpDate = new Date(this.currentDate.setHours(18));
+        let tmpDate = new Date(this.currentDate.setHours(13));
         let tmpHours = tmpDate.getHours();
         let tmpDay = tmpDate.getDay();
+        let tmp = null;
 
+        //  Handle Later Today
         if ( tmpHours >= 8 && tmpHours < 13){
-            console.log("8 >= x < 13: " + new Date(tmpDate.setHours(13,0,0)));
-            snoozeData.push({id:1,title:'Later Today',day:this.threeLetterName(tmpDate.getDay()),time:tmpDate.getHours()});
+            tmp = new Date(tmpDate.setHours(13,0,0));
         } else if ( tmpHours >= 13 && tmpHours < 18){
-            console.log("13 >= x < 18: " + new Date(tmpDate.setHours(18,0,0)));
-            snoozeData.push({id:1,title:'Later Today',day:this.threeLetterName(tmpDate.getDay()),time:tmpDate.getHours()});
+            tmp = new Date(tmpDate.setHours(18,0,0));
         } 
         
-        snoozeData.push({id:2,title:'Tomorrow',day:this.threeLetterName(tmpDate.getDay()),time:tmpDate.getHours()});
-        snoozeData.push({id:3,title:'Later this week',day:this.threeLetterName(tmpDate.getDay()),time:tmpDate.getHours()});
-        snoozeData.push({id:4,title:'This weekend',day:this.threeLetterName(tmpDate.getDay()),time:tmpDate.getHours()});
-        snoozeData.push({id:5,title:'Next week',day:this.threeLetterName(tmpDate.getDay()),time:tmpDate.getHours()});
+        if ( tmpHours >= 8 && tmpHours < 18){
+            snoozeData.push({id:1,title:'Later Today',day:this.threeLetterName(tmp.getDay()),time:tmp.getHours()});
+        }
 
+        // Handle Tomorrow
+        tmp = new Date(tmpDate);
+        tmp = new Date(tmp.setDate(tmpDate.getDate() + 1));
+        tmp = new Date(tmp.setHours(8,0,0));
+        
+        snoozeData.push({id:2,title:'Tomorrow',day:this.threeLetterName(tmp.getDay()),time:tmp.getHours()});
+
+        // Handle Later This week
+        tmp = new Date(tmpDate);
+        tmp = new Date(tmp.setDate(tmp.getDate() + 2));
+        tmp = new Date(tmp.setHours(8,0,0));
+        
+        snoozeData.push({id:3,title:'Later this week',day:this.threeLetterName(tmp.getDay()),time:tmp.getHours()});
+
+        // Handle This Weekend
+        tmp = new Date(tmpDate);
+        tmp = new Date(tmp.setDate(tmp.getDate() + (6-tmp.getDay()) ));
+        tmp = new Date(tmp.setHours(8,0,0));
+
+        snoozeData.push({id:4,title:'This weekend',day:this.threeLetterName(tmp.getDay()),time:tmp.getHours()});
+
+        // Handle Next Week
+        tmp = new Date(tmpDate);
+        tmp = new Date(tmp.setDate(tmp.getDate() + (1-tmp.getDay()) ));
+        tmp = new Date(tmp.setHours(8,0,0));
+
+        snoozeData.push({id:5,title:'Next week',day:this.threeLetterName(tmp.getDay()),time:tmp.getHours()});
         
         return snoozeData;
     }
