@@ -21,12 +21,12 @@ class App extends Component {
     return(
       <div className="App">
         
-       <MenuAppBar color={this.state.color}>
-         
-       </MenuAppBar>
-       <EmailList></EmailList>
+        <MenuAppBar color={this.state.color}>
+        </MenuAppBar>
+        <EmailList></EmailList>
 
       </div>
+      
     );
   }
 }

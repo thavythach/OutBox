@@ -10,23 +10,15 @@ import IconButton from "@material-ui/core/IconButton";
 import Grid from "@material-ui/core/Grid";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EmailIcon from "@material-ui/icons/Email";
+import Container from "@material-ui/core/Container";
 
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
-    maxWidth: 752,
-    alignItems: 'center',
   },
   demo: {
     backgroundColor: theme.palette.background.paper,
-    alignItems: 'center',
-    
   },
-  title: {
-    margin: theme.spacing(4, 0, 2),
-    alignItems: 'center',
-
-  }
 }));
 
 function generate(element) {
@@ -44,30 +36,42 @@ export default function InteractiveList() {
 
   return (
     <div className={classes.root}>
-      <Grid item xs={12} md={6}>
-        <div className={classes.demo}>
-          <List dense={dense}>
-            {generate(
-              <ListItem>
-                <ListItemAvatar>
-                  <Avatar>
-                    <EmailIcon />
-                  </Avatar>
-                </ListItemAvatar>
-                <ListItemText
-                  primary="Single-line item"
-                  secondary={secondary ? "Secondary text" : null}
-                />
-                <ListItemSecondaryAction>
-                  <IconButton edge="end" aria-label="delete">
-                    <DeleteIcon />
-                  </IconButton>
-                </ListItemSecondaryAction>
-              </ListItem>
-            )}
-          </List>
-        </div>
-      </Grid>
+      <Container>
+        <Grid 
+          container={true}
+          direction="row"
+          justify="center"
+          alignItems="center"
+        >
+          <Grid item xs={8}>
+            <div className={classes.demo}>
+              <List dense={dense}>
+                {generate(
+                  <ListItem
+                    divider={true}
+                    button={true}
+                  >
+                    <ListItemAvatar>
+                      <Avatar>
+                        <EmailIcon />
+                      </Avatar>
+                    </ListItemAvatar>
+                    <ListItemText
+                      primary="Single-line item"
+                      secondary={secondary ? "Secondary text" : null}
+                    />
+                    <ListItemSecondaryAction>
+                      <IconButton edge="end" aria-label="delete">
+                        <DeleteIcon />
+                      </IconButton>
+                    </ListItemSecondaryAction>
+                  </ListItem>
+                )}
+              </List>
+            </div>
+          </Grid>
+        </Grid>
+      </Container>
     </div>
   );
 }
