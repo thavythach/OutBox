@@ -11,6 +11,7 @@ import Fade from '@material-ui/core/Fade';
 import InsertInvitationIcon from '@material-ui/icons/InsertInvitation';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import MenuList from '@material-ui/core/MenuList';
+import { format } from "date-fns";
 
 import OBDateTimePicker from '../datetimepicker/datetimepicker.component.jsx';
 import SnoozeItem from '../snoozeitem/snoozeitem.component.jsx';
@@ -102,7 +103,6 @@ class SnoozeAction extends React.Component {
         const snoozeData = [];
         let tmpDate = new Date(this.currentDate.setHours(13));
         let tmpHours = tmpDate.getHours();
-        let tmpDay = tmpDate.getDay();
         let tmp = null;
 
         //  Handle Later Today
@@ -113,7 +113,7 @@ class SnoozeAction extends React.Component {
         } 
         
         if ( tmpHours >= 8 && tmpHours < 18){
-            snoozeData.push({id:1,title:'Later Today',day:this.threeLetterName(tmp.getDay()),time:tmp.getHours()});
+            snoozeData.push({id:1,title:'Later Today',day:this.threeLetterName(tmp.getDay()),time:format(tmp, "hh:mm a")});
         }
 
         // Handle Tomorrow
@@ -121,28 +121,28 @@ class SnoozeAction extends React.Component {
         tmp = new Date(tmp.setDate(tmpDate.getDate() + 1));
         tmp = new Date(tmp.setHours(8,0,0));
         
-        snoozeData.push({id:2,title:'Tomorrow',day:this.threeLetterName(tmp.getDay()),time:tmp.getHours()});
+        snoozeData.push({id:2,title:'Tomorrow',day:this.threeLetterName(tmp.getDay()),time:format(tmp, "hh:mm a")});
 
         // Handle Later This week
         tmp = new Date(tmpDate);
         tmp = new Date(tmp.setDate(tmp.getDate() + 2));
         tmp = new Date(tmp.setHours(8,0,0));
         
-        snoozeData.push({id:3,title:'Later this week',day:this.threeLetterName(tmp.getDay()),time:tmp.getHours()});
+        snoozeData.push({id:3,title:'Later this week',day:this.threeLetterName(tmp.getDay()),time:format(tmp, "hh:mm a")});
 
         // Handle This Weekend
         tmp = new Date(tmpDate);
         tmp = new Date(tmp.setDate(tmp.getDate() + (6-tmp.getDay()) ));
         tmp = new Date(tmp.setHours(8,0,0));
 
-        snoozeData.push({id:4,title:'This weekend',day:this.threeLetterName(tmp.getDay()),time:tmp.getHours()});
+        snoozeData.push({id:4,title:'This weekend',day:this.threeLetterName(tmp.getDay()),time:format(tmp, "hh:mm a")});
 
         // Handle Next Week
         tmp = new Date(tmpDate);
         tmp = new Date(tmp.setDate(tmp.getDate() + (1-tmp.getDay()) ));
         tmp = new Date(tmp.setHours(8,0,0));
 
-        snoozeData.push({id:5,title:'Next week',day:this.threeLetterName(tmp.getDay()),time:tmp.getHours()});
+        snoozeData.push({id:5,title:'Next week',day:this.threeLetterName(tmp.getDay()),time:format(tmp, "hh:mm a")});
         
         return snoozeData;
     }
@@ -176,7 +176,7 @@ class SnoozeAction extends React.Component {
 
                     <Divider/>
 
-                    {this.createSnoozeItems().map((data)=><SnoozeItem key={data.id} close={this.itemCallback} itemTitle={data.title} itemDay={data.day} itemTime={data.time + ":00 PM"}/>)}
+                    {this.createSnoozeItems().map((data)=><SnoozeItem key={data.id} close={this.itemCallback} itemTitle={data.title} itemDay={data.day} itemTime={data.time}/>)}
 
                     <Divider/>
 
