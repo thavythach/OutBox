@@ -89,7 +89,7 @@ class SnoozeAction extends React.Component {
     createSnoozeItems = () => {
 
         const snoozeData = [];
-        let tmpDate = new Date(this.currentDate.setHours(9)); // TODO: remove this
+        let tmpDate = new Date(this.currentDate); // TODO: remove this
         let tmpHours = tmpDate.getHours();
         let tmp = null;
 
@@ -120,14 +120,16 @@ class SnoozeAction extends React.Component {
 
         // Handle This Weekend
         tmp = new Date(tmpDate);
-        tmp = new Date(tmp.setDate(tmp.getDate() + (6-tmp.getDay()) ));
+        tmp = new Date(tmp.setDate(tmp.getDate() + ((6-tmp.getDay())) ));
         tmp = new Date(tmp.setHours(8,0,0));
 
         snoozeData.push({id:4,title:'This weekend',day:this.threeLetterName(tmp.getDay()),time:format(tmp, "hh:mm a"),date:tmp});
 
         // Handle Next Week
         tmp = new Date(tmpDate);
-        tmp = new Date(tmp.setDate(tmp.getDate() + (1-tmp.getDay()) ));
+        let x = (1-tmp.getDay() + 7);
+        if (tmp.getDay() === 0) x = 1; 
+        tmp = new Date(tmp.setDate(tmp.getDate() + x));
         tmp = new Date(tmp.setHours(8,0,0));
 
         snoozeData.push({id:5,title:'Next week',day:this.threeLetterName(tmp.getDay()),time:format(tmp, "hh:mm a"),date:tmp});
