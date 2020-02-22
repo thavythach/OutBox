@@ -3,6 +3,10 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Grid from '@material-ui/core/Grid';
 
 class SnoozeItem extends React.Component {
+
+    handleClose = event => {
+        this.props.close(false);
+    }
     
     render(props){
 

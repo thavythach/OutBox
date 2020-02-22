@@ -58,7 +58,6 @@ class OBDateTimePicker extends React.Component {
             onChange={this.handleDateChange}
             label="Pick Date Time"
             showTodayButton
-            
         />
     </MuiPickersUtilsProvider>
     );

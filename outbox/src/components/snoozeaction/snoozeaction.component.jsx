@@ -8,11 +8,9 @@ import ListItem from '@material-ui/core/ListItem';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Fade from '@material-ui/core/Fade';
-import Grid from '@material-ui/core/Grid';
 import InsertInvitationIcon from '@material-ui/icons/InsertInvitation';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import MenuList from '@material-ui/core/MenuList';
-import Typography from '@material-ui/core/Typography';
 
 import OBDateTimePicker from '../datetimepicker/datetimepicker.component.jsx';
 import SnoozeItem from '../snoozeitem/snoozeitem.component.jsx';
@@ -52,6 +50,38 @@ class SnoozeAction extends React.Component {
         );
     }
 
+    itemCallback = (close) => {
+        this.handleClose();
+        console.log(typeof(this.state.date))
+        this.setState({date: new Date(this.state.date.setHours(18,0,0)) }, () => {
+            console.log("new date: " + this.state.date);
+            console.log("new date: " + this.state.date.getHours());
+            console.log("new date: " + this.threeLetterName(this.state.date.getDay()));
+        });
+    }
+
+    threeLetterName = (DOTW) => {
+        switch (DOTW){
+            case 0:
+                return "Sun";
+            case 1:
+                return "Mon";
+            case 2:
+                return "Tue";
+            case 3:
+                return "Wed";
+            case 4:
+                return "Thu";
+            case 5:
+                return "Fri";
+            case 6:
+                return "Sat"
+            default:
+                // TODO: throw exception or do nothing
+                return null; 
+        }
+    }
+
     setPickDateTimeTrue = () => {
         this.setState({pickDateTime: true}, () => {console.log(this.state.pickDateTime)});
     }
@@ -63,8 +93,25 @@ class SnoozeAction extends React.Component {
                 open: true
             }, () => {
             console.log("Snooze Popover opened.");
+            this.props.snoozeCallback(this.state.date);
         });
-        this.props.snoozeCallback("02/17/20");
+    }
+
+
+    createSnoozeItems = () => {
+        let snooze = [];
+
+        let tmpDate = this.state.date;
+
+        const snoozeData = [
+            {id:1,title:'Later Today',day:this.threeLetterName(tmpDate.getDay()),time:tmpDate.getHours()},
+            {id:2,title:'Tomorrow',day:this.threeLetterName(tmpDate.getDay()),time:tmpDate.getHours()},
+            {id:3,title:'Later this week',day:this.threeLetterName(tmpDate.getDay()),time:tmpDate.getHours()},
+            {id:4,title:'This weekend',day:this.threeLetterName(tmpDate.getDay()),time:tmpDate.getHours()},
+            {id:5,title:'Next week',day:this.threeLetterName(tmpDate.getDay()),time:tmpDate.getHours()},
+        ];
+        
+        return snoozeData;
     }
 
     DTCallback = (picked, newDate) => {
@@ -76,8 +123,6 @@ class SnoozeAction extends React.Component {
     }
     
     render(props){
-        // let id = this.state.open ? 'simple-popover' : undefined;
-        // const {classes} = this.props;
 
         return(
             <div className="SnoozeAction">
@@ -98,11 +143,7 @@ class SnoozeAction extends React.Component {
 
                     <Divider/>
 
-                    <SnoozeItem itemTitle="Later Today" itemDay="Mon" itemTime="6:00 PM"/>
-                    <SnoozeItem itemTitle="Tomorrow" itemDay="Tue" itemTime="8:00 AM"/>
-                    <SnoozeItem itemTitle="Later this week" itemDay="Wed" itemTime="8:00 AM"/>
-                    <SnoozeItem itemTitle="This weekend" itemDay="Sat" itemTime="8:00 AM"/>
-                    <SnoozeItem itemTitle="Next Week" itemDay="Mon" itemTime="8:00 AM"/>
+                    {this.createSnoozeItems().map((data)=><SnoozeItem key={data.id} close={this.itemCallback} itemTitle={data.title} itemDay={data.day} itemTime={data.time + ":00 PM"}/>)}
 
                     <Divider/>
 
@@ -124,9 +165,4 @@ class SnoozeAction extends React.Component {
     }
 }
 
-// SnoozeAction.propTypes = {
-//     classes: PropTypes.object.isRequired,
-// };
-
-// export default withStyles(styles)(SnoozeAction);
 export default (SnoozeAction);
