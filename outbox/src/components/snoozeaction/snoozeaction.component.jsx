@@ -53,11 +53,11 @@ class SnoozeAction extends React.Component {
     itemCallback = (close) => {
         this.handleClose();
         console.log(typeof(this.state.date))
-        this.setState({date: new Date(this.state.date.setHours(18,0,0)) }, () => {
-            console.log("new date: " + this.state.date);
-            console.log("new date: " + this.state.date.getHours());
-            console.log("new date: " + this.threeLetterName(this.state.date.getDay()));
-        });
+        // this.setState({date: new Date(this.state.date.setHours(18,0,0)) }, () => {
+        //     console.log("new date: " + this.state.date);
+        //     console.log("new date: " + this.state.date.getHours());
+        //     console.log("new date: " + this.threeLetterName(this.state.date.getDay()));
+        // });
     }
 
     threeLetterName = (DOTW) => {
@@ -97,19 +97,26 @@ class SnoozeAction extends React.Component {
         });
     }
 
-
     createSnoozeItems = () => {
-        let snooze = [];
 
-        let tmpDate = this.state.date;
+        const snoozeData = [];
+        let tmpDate = new Date(this.currentDate.setHours(18));
+        let tmpHours = tmpDate.getHours();
+        let tmpDay = tmpDate.getDay();
 
-        const snoozeData = [
-            {id:1,title:'Later Today',day:this.threeLetterName(tmpDate.getDay()),time:tmpDate.getHours()},
-            {id:2,title:'Tomorrow',day:this.threeLetterName(tmpDate.getDay()),time:tmpDate.getHours()},
-            {id:3,title:'Later this week',day:this.threeLetterName(tmpDate.getDay()),time:tmpDate.getHours()},
-            {id:4,title:'This weekend',day:this.threeLetterName(tmpDate.getDay()),time:tmpDate.getHours()},
-            {id:5,title:'Next week',day:this.threeLetterName(tmpDate.getDay()),time:tmpDate.getHours()},
-        ];
+        if ( tmpHours >= 8 && tmpHours < 13){
+            console.log("8 >= x < 13: " + new Date(tmpDate.setHours(13,0,0)));
+            snoozeData.push({id:1,title:'Later Today',day:this.threeLetterName(tmpDate.getDay()),time:tmpDate.getHours()});
+        } else if ( tmpHours >= 13 && tmpHours < 18){
+            console.log("13 >= x < 18: " + new Date(tmpDate.setHours(18,0,0)));
+            snoozeData.push({id:1,title:'Later Today',day:this.threeLetterName(tmpDate.getDay()),time:tmpDate.getHours()});
+        } 
+        
+        snoozeData.push({id:2,title:'Tomorrow',day:this.threeLetterName(tmpDate.getDay()),time:tmpDate.getHours()});
+        snoozeData.push({id:3,title:'Later this week',day:this.threeLetterName(tmpDate.getDay()),time:tmpDate.getHours()});
+        snoozeData.push({id:4,title:'This weekend',day:this.threeLetterName(tmpDate.getDay()),time:tmpDate.getHours()});
+        snoozeData.push({id:5,title:'Next week',day:this.threeLetterName(tmpDate.getDay()),time:tmpDate.getHours()});
+
         
         return snoozeData;
     }
