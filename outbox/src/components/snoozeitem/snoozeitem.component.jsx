@@ -5,7 +5,7 @@ import Grid from '@material-ui/core/Grid';
 class SnoozeItem extends React.Component {
 
     handleClose = event => {
-        this.props.close(false);
+        this.props.close(false, this.props.itemDate);
     }
     
     render(props){

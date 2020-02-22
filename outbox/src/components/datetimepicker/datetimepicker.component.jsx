@@ -1,5 +1,5 @@
 import 'date-fns';
-import React, { Fragment } from 'react';
+import React from 'react';
 // import Grid from '@material-ui/core/Grid';
 // import DateFnsUtils from '@date-io/date-fns';
 import { DateTimePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
