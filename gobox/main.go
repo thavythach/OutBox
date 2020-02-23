@@ -2,18 +2,21 @@ package main
 
 import (
 	"fmt"
+	"log"
+	"net/http"
+	
+	// env "gobox/environments"
+	"gobox/router"
 
-	// "github.com/thavythach/outbox/"
 )
 
 func main() {
-	
-	//os package
-	// value := envVariable("name")
+	// fmt.Println(environments.GetEnv("DBUSER"))
+	// fmt.Println(environments.GetEnv("DBPASSWORD"))
 
-	//dotenv package
-	// dotenv := OBenv.getEnv("DBUSER")
-	dotenv := "yet"
+	r := router.Router()
 
-	fmt.Printf("os package: %s = %s \n", "mame", dotenv)
+	fmt.Println("Starting server on the port 8080")
+	log.Fatal(http.ListenAndServe(":8080", r))
 }
+

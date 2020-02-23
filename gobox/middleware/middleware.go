@@ -7,8 +7,9 @@ import (
 	"log"
 	"net/http"
 
-	"../models"
 	"github.com/gorilla/mux"
+	"gobox/models"
+	env "gobox/environments"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -19,7 +20,7 @@ import (
 //DB Connection string
 // for localhost string
 // const connectionString = "mongodb;//localhost:27017"
-const connectionString = "mongodb+srv://admin:" + OBEnv.morning + "@outbox-r7ux8.mongodb.net/test?retryWrites=true&w=majority"
+var connectionString = ("mongodb+srv://" + env.GetEnv("DBUSER") + ":" + env.GetEnv("DBPASSWORD") + "@outbox-r7ux8.mongodb.net/test?retryWrites=true&w=majority")
 
 // Database name
 const dbName = "test"
@@ -37,14 +38,14 @@ func init() {
 	clientOptions := options.Client().ApplyURI(connectionString)
 
 	// connect to mongoDB
-	client, err := mongo.Connect(context.TODO(), nil)
+	client, err := mongo.Connect(context.TODO(), clientOptions)
 
 	if err != nil {
 		log.Fatal(err)
 	}
 	
 	// check the connection
-	err = client.Ping(context.TODO(), clientOptions)
+	err = client.Ping(context.TODO(), nil)
 	
 	if err != nil {
 		log.Fatal(err)
