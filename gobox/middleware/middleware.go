@@ -19,7 +19,7 @@ import (
 //DB Connection string
 // for localhost string
 // const connectionString = "mongodb;//localhost:27017"
-const connectionString = "Connection String"
+const connectionString = "mongodb+srv://admin:" + OBEnv.morning + "@outbox-r7ux8.mongodb.net/test?retryWrites=true&w=majority"
 
 // Database name
 const dbName = "test"
@@ -61,7 +61,7 @@ func init() {
 func GetAllTask(w http.ResponseWriter, r *http.Request){
 	w.Header().Set("Context-Type", "application/x-www-form-urlencoded")
 	w.Header().Set("Access-Control-Allow-Origin", "*")
-	
+
 	payload := getAllTask()
 	json.NewEncoder(w).Encode(payload)
 }
@@ -199,6 +199,7 @@ func deleteOneTask(task string) {
 	id, _ := primitive.ObjectIDFromHex(task)
 	filter := bson.M{"_id": id}
 	d, err := collection.DeleteOne(context.Background(), filter)
+
 	if err != nil {
 		log.Fatal(err)
 	}
