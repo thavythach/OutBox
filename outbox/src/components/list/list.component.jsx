@@ -1,5 +1,4 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
@@ -11,67 +10,76 @@ import Grid from "@material-ui/core/Grid";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EmailIcon from "@material-ui/icons/Email";
 import Container from "@material-ui/core/Container";
+import TextField from "@material-ui/core/TextField";
+import './list.styles.css'
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    flexGrow: 1,
-  },
-  demo: {
-    backgroundColor: theme.palette.background.paper,
-  },
-}));
-
-function generate(element) {
-  return [0, 1, 2].map(value =>
+const generate = element => (
+  // TODO change this so that it generates based off of server data in the backend
+  [0, 1, 2].map(value =>
     React.cloneElement(element, {
       key: value
     })
-  );
-}
+  )
+)
 
-export default function InteractiveList() {
-  const classes = useStyles();
-  const [dense] = React.useState(false);
-  const [secondary] = React.useState(false);
+export default class InteractiveList extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      dense: false,
+      secondary: false,
+      emailVisible: false,
+    }
+  }
+  render() {
+    const handleClick = () => {
+      console.log("handleClick: opening email");
+      this.setState({
+        emailVisible: !this.state.emailVisible,
+      }, ()=>{console.log(this.state.emailVisible)})
+    }
 
-  return (
-    <div className={classes.root}>
-      <Container>
-        <Grid 
-          container={true}
-          direction="row"
-          justify="center"
-          alignItems="center"
-        >
-          <Grid item xs={8}>
-            <div className={classes.demo}>
-              <List dense={dense}>
-                {generate(
-                  <ListItem
-                    divider={true}
-                    button={true}
-                  >
-                    <ListItemAvatar>
-                      <Avatar>
-                        <EmailIcon />
-                      </Avatar>
-                    </ListItemAvatar>
-                    <ListItemText
-                      primary="Single-line item"
-                      secondary={secondary ? "Secondary text" : null}
-                    />
-                    <ListItemSecondaryAction>
-                      <IconButton edge="end" aria-label="delete">
-                        <DeleteIcon />
-                      </IconButton>
-                    </ListItemSecondaryAction>
-                  </ListItem>
-                )}
-              </List>
-            </div>
+    return (
+      <div className="root">
+        <Container>
+          <Grid 
+            container={true}
+            direction="row"
+            justify="center"
+            alignItems="center"
+          >
+            <Grid item xs={11}>
+              <div className="demo">
+                <List dense={this.state.dense}>
+                  {generate(
+                    <ListItem
+                      divider={true}
+                      button={true}
+                      onClick={handleClick}
+                    >
+                      <ListItemAvatar>
+                        <Avatar>
+                          <EmailIcon />
+                        </Avatar>
+                      </ListItemAvatar>
+                      <ListItemText
+                        primary="Single-line item"
+                        secondary={this.state.secondary ? "Secondary text" : null}
+                      />
+                      <ListItemSecondaryAction>
+                        <IconButton edge="end" aria-label="delete">
+                          <DeleteIcon />
+                        </IconButton>
+                      </ListItemSecondaryAction>
+                    </ListItem>
+                  )}
+                </List>
+                {this.state.emailVisible ? <TextField>Hello</TextField> : null}
+              </div>
+            </Grid>
           </Grid>
-        </Grid>
-      </Container>
-    </div>
-  );
+        </Container>
+      </div>
+    );
+  }
 }

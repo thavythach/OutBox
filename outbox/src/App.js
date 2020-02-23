@@ -4,6 +4,7 @@ import './App.css';
 import MenuAppBar from './components/menuappbar/menuappbar.component.jsx'
 import ObDrawer from './components/obDrawer/obDrawer.component.jsx';
 import EmailList from './components/list/list.component.jsx';
+import Container from '@material-ui/core/Container';
 
 class App extends Component {
 
@@ -11,7 +12,7 @@ class App extends Component {
     super();
 
     this.state = {
-      color: '#655b39'
+      color: '#655b39', 
     };
 
   }
@@ -23,8 +24,7 @@ class App extends Component {
         
         <MenuAppBar color={this.state.color}>
         </MenuAppBar>
-        <EmailList></EmailList>
-
+          <EmailList></EmailList>
       </div>
       
     );
