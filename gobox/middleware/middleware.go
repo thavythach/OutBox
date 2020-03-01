@@ -228,7 +228,7 @@ func GetAllEmails(w http.ResponseWriter, r *http.Request){
 }
 
 // get all task from the DB and return it
-func getAllEmails() []primitive.M {
+func getAllTask() []primitive.M {
 	cur, err := collection.Find(context.Background(), bson.D{{}})
 	
 	if err != nil {

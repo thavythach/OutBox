@@ -8,10 +8,9 @@ type ToDoList struct {
 	Status	bool					`json:"status,omitempty"`
 }
 
-type Email struct {
-	ID				primitive.ObjectID		`json:"_idomitempty" bson:"_id,omitempty`
-	Title			string					`json:"title,omitempty"`
-	PinStatus		bool					`json:"pinStatus,omitempty`
-	SnoozeStatus	bool					`json:"snoozeStatus,omitempty`
-	
-}
+// type Email struct {
+// 	ID				primitive.ObjectID		`json:"_idomitempty" bson:"_id,omitempty`
+// 	Title			string					`json:"title,omitempty"`
+// 	PinStatus		bool					`json:"pinStatus,omitempty`
+// 	SnoozeStatus	bool					`json:"snoozeStatus,omitempty`
+// }
