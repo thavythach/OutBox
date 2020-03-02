@@ -7,9 +7,10 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/gorilla/mux"
-	"gobox/models"
 	env "gobox/environments"
+	"gobox/models"
+
+	"github.com/gorilla/mux"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -33,7 +34,7 @@ var collection *mongo.Collection
 
 //create connection with mongo db
 func init() {
-	
+
 	// set client options
 	clientOptions := options.Client().ApplyURI(connectionString)
 
@@ -43,10 +44,10 @@ func init() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	
+
 	// check the connection
 	err = client.Ping(context.TODO(), nil)
-	
+
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -59,7 +60,7 @@ func init() {
 }
 
 // GetAllTask get all the task route
-func GetAllTask(w http.ResponseWriter, r *http.Request){
+func GetAllTask(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Context-Type", "application/x-www-form-urlencoded")
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 
@@ -68,7 +69,7 @@ func GetAllTask(w http.ResponseWriter, r *http.Request){
 }
 
 // CreateTask create task route
-func CreateTask(w http.ResponseWriter, r *http.Request){
+func CreateTask(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Context-Type", "application/x-www-form-urlencoded")
 	w.Header().Set("Access-Control-Allow-origin", "*")
 	w.Header().Set("Access-Control-Allow-Methods", "POST")
@@ -81,7 +82,7 @@ func CreateTask(w http.ResponseWriter, r *http.Request){
 }
 
 // TaskComplete update task route
-func TaskComplete(w http.ResponseWriter, r *http.Request){
+func TaskComplete(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/x-www-form-urlencoded")
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	w.Header().Set("Access-Control-Allow-Methods", "PUT")
@@ -93,7 +94,7 @@ func TaskComplete(w http.ResponseWriter, r *http.Request){
 }
 
 // UndoTask undo the complete task route
-func UndoTask(w http.ResponseWriter, r *http.Request){
+func UndoTask(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/x-www-form-urlencoded")
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	w.Header().Set("Access-Control-Allow-Methods", "PUT")
@@ -103,9 +104,9 @@ func UndoTask(w http.ResponseWriter, r *http.Request){
 	undoTask(params["id"])
 	json.NewEncoder(w).Encode(params["id"])
 }
-	
+
 // DeleteTask delete one task route
-func DeleteTask(w http.ResponseWriter, r *http.Request){
+func DeleteTask(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Context-Type", "application/x-www-form-urlencoded")
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	w.Header().Set("Access-Control-Allow-Methods", "DELETE")
@@ -116,9 +117,9 @@ func DeleteTask(w http.ResponseWriter, r *http.Request){
 	json.NewEncoder(w).Encode(params["id"])
 	// json.NewEncoder(w).Encode("Task not found")
 }
-	
+
 // DeleteAllTask delete all tasks route
-func DeleteAllTask(w http.ResponseWriter, r *http.Request){
+func DeleteAllTask(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Context-Type", "application/x-www-form-urlencoded")
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	count := deleteAllTask()
@@ -128,10 +129,10 @@ func DeleteAllTask(w http.ResponseWriter, r *http.Request){
 // get all task from the DB and return it
 func getAllTask() []primitive.M {
 	cur, err := collection.Find(context.Background(), bson.D{{}})
-	
+
 	if err != nil {
 		log.Fatal(err)
-	}	
+	}
 
 	var results []primitive.M
 	for cur.Next(context.Background()) {
@@ -140,7 +141,7 @@ func getAllTask() []primitive.M {
 		if e != nil {
 			log.Fatal(e)
 		}
-		results = append(results,result)
+		results = append(results, result)
 	}
 
 	if err := cur.Err(); err != nil {
@@ -154,17 +155,17 @@ func getAllTask() []primitive.M {
 // Insert one task in the DB
 func insertOneTask(task models.ToDoList) {
 	insertResult, err := collection.InsertOne(context.Background(), task)
-	
+
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	fmt.Println("Inserted a Single Record ", insertResult.InsertedID)
 
-}	
-	
+}
+
 // task complete method, update task's status to true
-func taskComplete(task string){
+func taskComplete(task string) {
 	fmt.Println(task)
 	id, _ := primitive.ObjectIDFromHex(task)
 	filter := bson.M{"_id": id}
@@ -179,7 +180,7 @@ func taskComplete(task string){
 }
 
 // task undo method, update task's status to false
-func undoTask(task string){
+func undoTask(task string) {
 	fmt.Println(task)
 	id, _ := primitive.ObjectIDFromHex(task)
 	filter := bson.M{"_id": id}
@@ -192,7 +193,6 @@ func undoTask(task string){
 
 	fmt.Println("modified count: ", result.ModifiedCount)
 }
-
 
 // delete one task from the DB, delete by ID
 func deleteOneTask(task string) {
@@ -219,36 +219,36 @@ func deleteAllTask() int64 {
 	return d.DeletedCount
 }
 
-func GetAllEmails(w http.ResponseWriter, r *http.Request){
-	w.Header().Set("Context-Type", "application/x-www-form-urlencoded")
-	w.Header().Set("Access-Control-Allow-Origin", "*")
+// func GetAllEmails(w http.ResponseWriter, r *http.Request){
+// 	w.Header().Set("Context-Type", "application/x-www-form-urlencoded")
+// 	w.Header().Set("Access-Control-Allow-Origin", "*")
 
-	payload := getAllEmails()
-	json.NewEncoder(w).Encode(payload)
-}
+// 	payload := getAllEmails()
+// 	json.NewEncoder(w).Encode(payload)
+// }
 
 // get all task from the DB and return it
-func getAllTask() []primitive.M {
-	cur, err := collection.Find(context.Background(), bson.D{{}})
-	
-	if err != nil {
-		log.Fatal(err)
-	}	
+// func getAllTask() []primitive.M {
+// 	cur, err := collection.Find(context.Background(), bson.D{{}})
 
-	var results []primitive.M
-	for cur.Next(context.Background()) {
-		var result bson.M
-		e := cur.Decode(&result)
-		if e != nil {
-			log.Fatal(e)
-		}
-		results = append(results,result)
-	}
+// 	if err != nil {
+// 		log.Fatal(err)
+// 	}
 
-	if err := cur.Err(); err != nil {
-		log.Fatal(err)
-	}
+// 	var results []primitive.M
+// 	for cur.Next(context.Background()) {
+// 		var result bson.M
+// 		e := cur.Decode(&result)
+// 		if e != nil {
+// 			log.Fatal(e)
+// 		}
+// 		results = append(results, result)
+// 	}
 
-	cur.Close(context.Background())
-	return results
-}
+// 	if err := cur.Err(); err != nil {
+// 		log.Fatal(err)
+// 	}
+
+// 	cur.Close(context.Background())
+// 	return results
+// }
