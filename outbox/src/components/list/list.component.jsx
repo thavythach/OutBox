@@ -11,6 +11,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import EmailIcon from "@material-ui/icons/Email";
 import Container from "@material-ui/core/Container";
 import TextField from "@material-ui/core/TextField";
+import ExpansionPanel from "@material-ui/core/ExpansionPanel"
 import './list.styles.css'
 
 const generate = element => (
@@ -52,29 +53,34 @@ export default class InteractiveList extends React.Component {
               <div className="demo">
                 <List dense={this.state.dense}>
                   {generate(
-                    <ListItem
-                      divider={true}
-                      button={true}
-                      onClick={handleClick}
+                    <ExpansionPanel 
+                      children={<h1>Hello</h1>}
+                      expanded = {false}
                     >
-                      <ListItemAvatar>
-                        <Avatar>
-                          <EmailIcon />
-                        </Avatar>
-                      </ListItemAvatar>
-                      <ListItemText
-                        primary="Single-line item"
-                        secondary={this.state.secondary ? "Secondary text" : null}
-                      />
-                      <ListItemSecondaryAction>
-                        <IconButton edge="end" aria-label="delete">
-                          <DeleteIcon />
-                        </IconButton>
-                      </ListItemSecondaryAction>
-                    </ListItem>
+                      
+                    </ExpansionPanel>
+                    // <ListItem
+                    //   divider={true}
+                    //   button={true}
+                    //   onClick={handleClick}
+                    // >
+                    //   <ListItemAvatar>
+                    //     <Avatar>
+                    //       <EmailIcon />
+                    //     </Avatar>
+                    //   </ListItemAvatar>
+                    //   <ListItemText
+                    //     primary="Single-line item"
+                    //     secondary={this.state.secondary ? "Secondary text" : null}
+                    //   />
+                    //   <ListItemSecondaryAction>
+                    //     <IconButton edge="end" aria-label="delete">
+                    //       <DeleteIcon />
+                    //     </IconButton>
+                    //   </ListItemSecondaryAction>
+                    // </ListItem>
                   )}
                 </List>
-                {this.state.emailVisible ? <TextField>Hello</TextField> : null}
               </div>
             </Grid>
           </Grid>
