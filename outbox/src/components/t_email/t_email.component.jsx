@@ -25,14 +25,14 @@ class ToDoList extends Component {
   };
 
   onSubmit = () => {
-    let { task } = this.state;
+    let { user } = this.state;
     // console.log("pRINTING task", this.state.task);
-    if (task) {
+    if (user) { 
       axios
         .post(
-          endpoint + "/api/task",
+          endpoint + "/api/v1/user",
           {
-            task
+            user
           },
           {
             headers: {

@@ -27,7 +27,7 @@ var connectionString = ("mongodb+srv://" + env.GetEnv("DBUSER") + ":" + env.GetE
 const dbName = "test"
 
 // Collection name
-const collName = "todoList"
+const collName = "Users"
 
 // collection object/instance
 var collection *mongo.Collection
@@ -219,36 +219,25 @@ func deleteAllTask() int64 {
 	return d.DeletedCount
 }
 
-// func GetAllEmails(w http.ResponseWriter, r *http.Request){
-// 	w.Header().Set("Context-Type", "application/x-www-form-urlencoded")
-// 	w.Header().Set("Access-Control-Allow-Origin", "*")
+// CreateUser create user route
+func CreateUser(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Context-Type", "application/x-www-form-urlencoded")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Methods", "POST")
+	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
 
-// 	payload := getAllEmails()
-// 	json.NewEncoder(w).Encode(payload)
-// }
+	var user models.User
+	_ = json.NewDecoder(r.Body).Decode(&user)
+	insertUser(user)
+	json.NewEncoder(w).Encode(user)
+}
 
-// get all task from the DB and return it
-// func getAllTask() []primitive.M {
-// 	cur, err := collection.Find(context.Background(), bson.D{{}})
+func insertUser(user models.User) {
+	insertResult, err := collection.InsertOne(context.Background(), user)
 
-// 	if err != nil {
-// 		log.Fatal(err)
-// 	}
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println("Inserted a Single User Record", insertResult.InsertedID)
 
-// 	var results []primitive.M
-// 	for cur.Next(context.Background()) {
-// 		var result bson.M
-// 		e := cur.Decode(&result)
-// 		if e != nil {
-// 			log.Fatal(e)
-// 		}
-// 		results = append(results, result)
-// 	}
-
-// 	if err := cur.Err(); err != nil {
-// 		log.Fatal(err)
-// 	}
-
-// 	cur.Close(context.Background())
-// 	return results
-// }
+}
