@@ -11,7 +11,10 @@ import Grid from "@material-ui/core/Grid";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EmailIcon from "@material-ui/icons/Email";
 import Container from "@material-ui/core/Container";
-
+import ExpansionPanel from "@material-ui/core/ExpansionPanel"
+import { ExpansionPanelDetails, ExpansionPanelSummary } from "@material-ui/core";
+import Typography from "@material-ui/core/Typography"
+import TextField from "@material-ui/core/TextField"
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
@@ -47,25 +50,16 @@ export default function InteractiveList() {
             <div className={classes.demo}>
               <List dense={dense}>
                 {generate(
-                  <ListItem
-                    divider={true}
-                    button={true}
-                  >
-                    <ListItemAvatar>
-                      <Avatar>
-                        <EmailIcon />
-                      </Avatar>
-                    </ListItemAvatar>
-                    <ListItemText
-                      primary="Single-line item"
-                      secondary={secondary ? "Secondary text" : null}
-                    />
-                    <ListItemSecondaryAction>
-                      <IconButton edge="end" aria-label="delete">
-                        <DeleteIcon />
-                      </IconButton>
-                    </ListItemSecondaryAction>
-                  </ListItem>
+                  <ExpansionPanel>
+                    <ExpansionPanelSummary flex-grow={1}>
+                      <Typography className={classes.heading}>Email 1</Typography>
+                      <DeleteIcon color="secondary" flex-grow={2}></DeleteIcon>
+
+                    </ExpansionPanelSummary>
+                    <ExpansionPanelDetails>
+                      <TextField></TextField>
+                    </ExpansionPanelDetails>
+                  </ExpansionPanel>
                 )}
               </List>
             </div>
