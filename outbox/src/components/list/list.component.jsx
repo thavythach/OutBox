@@ -1,4 +1,5 @@
 import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
@@ -28,56 +29,43 @@ function generate(element) {
     React.cloneElement(element, {
       key: value
     })
-  )
+  );
 }
 
-export default class InteractiveList extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      dense: false,
-      secondary: false,
-      emailVisible: false,
-    }
-  }
-  render() {
-    const handleClick = () => {
-      console.log("handleClick: opening email");
-      this.setState({
-        emailVisible: !this.state.emailVisible,
-      }, ()=>{console.log(this.state.emailVisible)})
-    }
+export default function InteractiveList() {
+  const classes = useStyles();
+  const [dense] = React.useState(false);
+  const [secondary] = React.useState(false);
 
-    return (
-      <div className={classes.root}>
-        <Container>
-          <Grid 
-            container={true}
-            direction="row"
-            justify="center"
-            alignItems="center"
-          >
-            <Grid item xs={8}>
-              <div className={classes.demo}>
-                <List dense={dense}>
-                  {generate(
-                    <ExpansionPanel>
-                      <ExpansionPanelSummary flex-grow={1}>
-                        <Typography className={classes.heading}>Email 1</Typography>
-                        <DeleteIcon color="secondary" flex-grow={2}></DeleteIcon>
+  return (
+    <div className={classes.root}>
+      <Container>
+        <Grid 
+          container={true}
+          direction="row"
+          justify="center"
+          alignItems="center"
+        >
+          <Grid item xs={8}>
+            <div className={classes.demo}>
+              <List dense={dense}>
+                {generate(
+                  <ExpansionPanel>
+                    <ExpansionPanelSummary flex-grow={1}>
+                      <Typography className={classes.heading}>Email 1</Typography>
+                      <DeleteIcon color="secondary" flex-grow={2}></DeleteIcon>
 
-                      </ExpansionPanelSummary>
-                      <ExpansionPanelDetails>
-                        <TextField></TextField>
-                      </ExpansionPanelDetails>
-                    </ExpansionPanel>
-                  )}
-                </List>
-              </div>
-            </Grid>
+                    </ExpansionPanelSummary>
+                    <ExpansionPanelDetails>
+                      <TextField></TextField>
+                    </ExpansionPanelDetails>
+                  </ExpansionPanel>
+                )}
+              </List>
+            </div>
           </Grid>
-        </Container>
-      </div>
-    );
-  }
+        </Grid>
+      </Container>
+    </div>
+  );
 }
