@@ -1,6 +1,7 @@
 import React from 'react';
 import PinningAction from '../pinningaction/pinningaction.component.jsx';
 import SnoozeAction from '../snoozeaction/snoozeaction.component.jsx';
+import DeleteAction from '../deleteaction/deleteaction.component.jsx';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 
 class Actions extends React.Component {
@@ -11,8 +12,19 @@ class Actions extends React.Component {
         this.state = {
             isPinned: null,
             snoozeDate: null,
+            isDeleted: false,
         };
 
+    }
+
+    deleteCallback = (data) => {
+        this.setState({ isDeleted: data}, () => {
+            
+            // TODO: delete animation occurs when delete from screen happens.
+            if (this.state.isDeleted){
+
+            }
+        });
     }
 
     snoozeCallback = (date) => {
@@ -29,7 +41,6 @@ class Actions extends React.Component {
                 // TODO: remove from list of emails in DB
             }
         });
-
     }
 
   render(){
@@ -38,7 +49,8 @@ class Actions extends React.Component {
         <h1>Hello, World!</h1>
         <ButtonGroup>
             <PinningAction pinCallback={this.pinCallback}/> 
-            <SnoozeAction snoozeCallback={this.snoozeCallback} />
+            <SnoozeAction snoozeCallback={this.snoozeCallback}/>
+            <DeleteAction deleteCallback={this.deleteCallback}/>
         </ButtonGroup>
       </div>
     );
