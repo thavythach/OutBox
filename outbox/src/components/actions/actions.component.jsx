@@ -46,7 +46,7 @@ class Actions extends React.Component {
   render(){
     return(
       <div className="App">
-        <h1>Hello, World!</h1>
+        {/* <h1>Hello, World!</h1> */}
         <ButtonGroup>
             <PinningAction pinCallback={this.pinCallback}/> 
             <SnoozeAction snoozeCallback={this.snoozeCallback}/>

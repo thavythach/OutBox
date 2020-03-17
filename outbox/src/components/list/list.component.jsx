@@ -15,6 +15,8 @@ import ExpansionPanel from "@material-ui/core/ExpansionPanel"
 import { ExpansionPanelDetails, ExpansionPanelSummary } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography"
 import TextField from "@material-ui/core/TextField"
+import Actions from '../actions/actions.component.jsx';
+
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
@@ -53,11 +55,13 @@ export default function InteractiveList() {
                   <ExpansionPanel>
                     <ExpansionPanelSummary flex-grow={1}>
                       <Typography className={classes.heading}>Email 1</Typography>
-                      <DeleteIcon color="secondary" flex-grow={2}></DeleteIcon>
+                      {/* <DeleteIcon color="secondary" flex-grow={2}></DeleteIcon> */}
+                      <Actions />
 
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails>
                       <TextField></TextField>
+                      
                     </ExpansionPanelDetails>
                   </ExpansionPanel>
                 )}
