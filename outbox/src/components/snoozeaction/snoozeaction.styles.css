@@ -1,0 +1,32 @@
+.SnoozeDateTime {
+    /* background-color: blue; */
+    /* clear: both; */
+    width:300px !important;
+    /* height:30px; */
+    /* background-color:red; */
+    /* margin:0 auto; */
+    /* position:relative; */
+}
+
+.rightRight {
+    float: right !important;
+}
+
+.leftLeft {
+    float: left !important;
+    /* padding-left: 80px; */
+}
+
+.Snooze {
+    clear: both;
+}
+
+.gridAlignRight {
+    text-align: right;
+}
+
+.snoozeUntil  {
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10+ and Edge */
+    user-select: none; /* Standard syntax */
+}
