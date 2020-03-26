@@ -1,0 +1,39 @@
+.email-list-item {
+    /* padding: 100px; */
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 150px;
+    padding-right: 150px;
+    font-size: 16px;
+}
+
+.heading {
+
+    /* background-color: blue; */
+
+}
+
+.heading-icon {
+    vertical-align: middle;
+}
+
+.heading-text {
+    font-weight: bold;
+    vertical-align: middle;
+    padding-left: 10px;
+}
+
+.subject-text-preview {
+    font-weight: bold;
+}
+
+.body-text-preview {
+    /* padding-left: 10px; */
+    opacity: 0.5;
+}
+
+.body-
+
+.bleh {
+    border-left: solid 1px blue;
+}
