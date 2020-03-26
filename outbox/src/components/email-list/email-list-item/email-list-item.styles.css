@@ -5,6 +5,7 @@
     padding-left: 150px;
     padding-right: 150px;
     font-size: 16px;
+    
 }
 
 .heading {
@@ -19,8 +20,11 @@
 
 .heading-text {
     font-weight: bold;
-    vertical-align: middle;
     padding-left: 10px;
+}
+
+.text-preview {
+    vertical-align: middle;
 }
 
 .subject-text-preview {
