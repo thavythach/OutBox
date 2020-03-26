@@ -26,13 +26,13 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function generate(element) {
-  return [0, 1, 2].map(value =>
-    React.cloneElement(element, {
-      key: value
-    })
-  );
-}
+// function generate(element) {
+//   return [0, 1, 2].map(value =>
+//     React.cloneElement(element, {
+//       key: value
+//     })
+//   );
+// }
 
 export default function InteractiveList() {
   const classes = useStyles();
@@ -51,7 +51,7 @@ export default function InteractiveList() {
           <Grid item xs={8}>
             <div className={classes.demo}>
               <List dense={dense}>
-                {generate(
+                {/* {generate( */}
                   <ExpansionPanel>
                     <ExpansionPanelSummary flex-grow={1}>
                       <Typography className={classes.heading}>Email 1</Typography>
@@ -64,7 +64,7 @@ export default function InteractiveList() {
                       
                     </ExpansionPanelDetails>
                   </ExpansionPanel>
-                )}
+                {/* )} */}
               </List>
             </div>
           </Grid>
