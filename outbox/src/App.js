@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import './App.css';
 import MenuAppBar from './components/menuappbar/menuappbar.component.jsx'
-import EmailList from './components/list/list.component.jsx';
+// import EmailList from './components/list/list.component.jsx';
 import User from './components/user/user.component.jsx'; 
+import EmailList from './components/email-list/email-list.component.jsx';
+
 
 class App extends Component {
 
@@ -22,6 +24,7 @@ class App extends Component {
         <MenuAppBar color={this.state.color}>
         </MenuAppBar>
         <EmailList></EmailList>
+
       </div>
       
     );
