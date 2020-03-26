@@ -1,6 +1,6 @@
 import React from "react";
 
-import { List, ListItem, ListItemAvatar,ListItemSecondaryAction, ListItemText, Avatar, IconButton, Grid, EmailIcon, Container, ExpansionPanel, Typography, TextField, ExpansionPanelDetails,ExpansionPanelSummary } from '@material-ui/core';
+import { List, ListItem, ListItemAvatar,ListItemSecondaryAction, ListItemText, Avatar, IconButton, Grid, EmailIcon, Container, ExpansionPanel, Typography, TextField, ExpansionPanelDetails,ExpansionPanelSummary, CssBaseline} from '@material-ui/core';
 
 import Actions from '../actions/actions.component';
 import { makeStyles } from '@material-ui/core/styles';
@@ -14,13 +14,17 @@ class EmailList extends React.Component {
     }
 
     render(){
-        // const classes = useStyles();
-        // const [dense] = React.useState(false);
-        // const [secondary] = React.useState(false);
         
         return(
             <div class="email_list">
-            <p>hello</p>
+                <React.Fragment>
+                    <CssBaseline />
+                    <Container maxWidth="xl">
+                        <Typography component="div" style={{ backgroundColor: '#cfe8fc', height: '100vh' }}>
+                            <email-list-item></email-list-item>
+                        </Typography>
+                    </Container>
+                </React.Fragment>
             </div>
         );
     }
