@@ -11,12 +11,20 @@ class EmailListItem extends React.Component {
     
     constructor(props){
         super(props)
+
+        this.state = {
+            expanded: false,
+        }
     }
 
-    render(){
-        return(
-            <div className="email-list-item">
-                <ExpansionPanel>
+    handleChange = (panel) => (event, isExpanded) => {
+        this.setState({expanded: isExpanded ? panel : false})
+    }
+
+    newEmail = (panelItem) => {
+        return (
+            <div className="email-list-item-content">
+                <ExpansionPanel expanded={this.state.expanded === panelItem} onChange={this.handleChange(panelItem)}>
                     <ExpansionPanelSummary flex-grow={1}>
                         <Grid container spacing={3} alignItems="center">
                             <Grid item xs={3}>
@@ -46,6 +54,17 @@ class EmailListItem extends React.Component {
                         this is me.
                     </ExpansionPanelDetails>
                 </ExpansionPanel>
+            </div>
+        )
+    }
+
+    render(){
+        return(
+            <div class="email-list-item">
+                {this.newEmail('panel1')}
+                {this.newEmail('panel2')}
+                {this.newEmail('panel3')}
+                {this.newEmail('panel4')}
             </div>
         );
     }

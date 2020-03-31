@@ -11,6 +11,9 @@ class EmailList extends React.Component {
     
     constructor(props){
         super(props);
+
+        this.state = {
+        }
     }
 
     render(){
@@ -21,11 +24,6 @@ class EmailList extends React.Component {
                     <CssBaseline />
                     <Container maxWidth="xl">
                         <Typography component="div" style={{ backgroundColor: '#cfe8fc', height: '100vh' }}>
-                            <EmailListItem className="email-list-item"></EmailListItem>
-                            <EmailListItem className="email-list-item"></EmailListItem>
-                            <EmailListItem className="email-list-item"></EmailListItem>
-                            <EmailListItem className="email-list-item"></EmailListItem>
-                            <EmailListItem className="email-list-item"></EmailListItem>
                             <EmailListItem className="email-list-item"></EmailListItem>
                         </Typography>
                     </Container>

@@ -177,8 +177,8 @@ class SnoozeAction extends React.Component {
                         <MenuItem onClick={this.setPickDateTimeTrue} className="SnoozeDateTime">
                             <ListItemIcon>
                                 <InsertInvitationIcon fontSize="large"/>
-                                <OBDateTimePicker isClicked={this.state.pickDateTime} DTCallback={this.DTCallback}/>
                             </ListItemIcon>
+                            <OBDateTimePicker isClicked={this.state.pickDateTime} DTCallback={this.DTCallback}/>
 
                         </MenuItem>
 

@@ -1,4 +1,4 @@
-.email-list-item {
+.email-list-item-content{
     /* padding: 100px; */
     padding-top: 5px;
     padding-bottom: 5px;
@@ -9,8 +9,6 @@
 }
 
 .heading {
-
-    /* background-color: blue; */
 
 }
 
@@ -24,7 +22,7 @@
 }
 
 .text-preview {
-    
+
 }
 
 .subject-text-preview {
