@@ -157,32 +157,32 @@ class SnoozeAction extends React.Component {
                     <AccessTimeIcon style={{ "color": "gray" }}/>
                 </IconButton>
                 
-                <MenuList>
-                <Menu
-                    id="fade-menu"
-                    anchorEl={this.state.anchorEl}
-                    keepMounted
-                    open={this.state.open}
-                    onClose={this.handleClose}
-                    TransitionComponent={Fade}
-                >
-                    <ListItem className="snoozeUntil">Snooze until...</ListItem>
+                <MenuList className="snooze-menu">
+                    <Menu
+                        id="fade-menu"
+                        anchorEl={this.state.anchorEl}
+                        keepMounted
+                        open={this.state.open}
+                        onClose={this.handleClose}
+                        TransitionComponent={Fade}
+                    >
+                        <ListItem className="snoozeUntil">Snooze until...</ListItem>
 
-                    <Divider/>
+                        <Divider/>
 
-                    {this.createSnoozeItems().map((data)=><SnoozeItem key={data.id} close={this.itemCallback} itemTitle={data.title} itemDay={data.day} itemTime={data.time} itemDate={data.date}/>)}
+                        {this.createSnoozeItems().map((data)=><SnoozeItem key={data.id} close={this.itemCallback} itemTitle={data.title} itemDay={data.day} itemTime={data.time} itemDate={data.date}/>)}
 
-                    <Divider/>
+                        <Divider/>
 
-                    <MenuItem onClick={this.setPickDateTimeTrue} className="SnoozeDateTime">
-                        <ListItemIcon>
-                            <InsertInvitationIcon fontSize="large"/>
-                        </ListItemIcon>
-                        <OBDateTimePicker isClicked={this.state.pickDateTime} DTCallback={this.DTCallback}/>
+                        <MenuItem onClick={this.setPickDateTimeTrue} className="SnoozeDateTime">
+                            <ListItemIcon>
+                                <InsertInvitationIcon fontSize="large"/>
+                                <OBDateTimePicker isClicked={this.state.pickDateTime} DTCallback={this.DTCallback}/>
+                            </ListItemIcon>
 
-                    </MenuItem>
+                        </MenuItem>
 
-                </Menu>
+                    </Menu>
 
                 </MenuList>
 

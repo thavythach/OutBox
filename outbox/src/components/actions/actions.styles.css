@@ -1,0 +1,16 @@
+/* .nice {
+    background-color: lightgreen;
+    text-align: center;
+    vertical-align: middle;
+} */
+
+.actions-content{
+    columns: 3;
+    column-gap: 0px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.actions-item {
+    width: 100px;
+}

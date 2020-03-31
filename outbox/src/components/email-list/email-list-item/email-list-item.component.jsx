@@ -15,23 +15,23 @@ class EmailListItem extends React.Component {
 
     render(){
         return(
-            <div class="email-list-item">
+            <div className="email-list-item">
                 <ExpansionPanel>
                     <ExpansionPanelSummary flex-grow={1}>
-                        <Grid container spacing={3}>
+                        <Grid container spacing={3} alignItems="center">
                             <Grid item xs={3}>
-                                <span class="heading">
-                                    <span class="heading-icon"><AccountCircleRoundedIcon style={{ fontSize: 40}}/></span>
-                                    <span class="heading-text">Ken Jung</span>
+                                <span className="heading">
+                                    <span className="heading-icon"><AccountCircleRoundedIcon style={{ fontSize: 40}}/></span>
+                                    <span className="heading-text">Ken Jung</span>
                                 </span>
                             </Grid>
                             <Grid item xs={8}>
-                                <span class="text-preview">
-                                    <span class="subject-text-preview">
+                                <span className="text-preview">
+                                    <span className="subject-text-preview">
                                         I'm going to Hawaii! Kawaabunggaaaa!
                                     </span> 
                                     &nbsp;-&nbsp;
-                                    <span class="body-text-preview">
+                                    <span className="body-text-preview">
                                         Hey Jimmy, I'm going to Hawaii. Take care of the cats for me!
                                     </span>
                                 </span>

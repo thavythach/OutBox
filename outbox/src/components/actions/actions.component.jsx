@@ -2,7 +2,9 @@ import React from 'react';
 import PinningAction from '../pinningaction/pinningaction.component.jsx';
 import SnoozeAction from '../snoozeaction/snoozeaction.component.jsx';
 import DeleteAction from '../deleteaction/deleteaction.component.jsx';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
+import {ButtonGroup, Button} from '@material-ui/core';
+
+import './actions.styles.css';
 
 class Actions extends React.Component {
 
@@ -45,13 +47,12 @@ class Actions extends React.Component {
 
   render(){
     return(
-      <div className="App">
-        {/* <h1>Hello, World!</h1> */}
-        <ButtonGroup>
-            <PinningAction pinCallback={this.pinCallback}/> 
-            <SnoozeAction snoozeCallback={this.snoozeCallback}/>
-            <DeleteAction deleteCallback={this.deleteCallback}/>
-        </ButtonGroup>
+      <div className="Actions">
+        <div className="actions-content">
+            <PinningAction className="actions-item" pinCallback={this.pinCallback}/>
+            <SnoozeAction className="actions-item" snoozeCallback={this.snoozeCallback}/>
+            <DeleteAction className="actions-item" deleteCallback={this.deleteCallback}/>
+        </div>
       </div>
     );
   }
