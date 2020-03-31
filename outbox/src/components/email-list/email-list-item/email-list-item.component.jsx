@@ -21,7 +21,7 @@ class EmailListItem extends React.Component {
         this.setState({expanded: isExpanded ? panel : false})
     }
 
-    newEmail = (panelItem) => {
+    newEmail = (panelItem, recipient, subject, body) => {
         return (
             <div className="email-list-item-content">
                 <ExpansionPanel expanded={this.state.expanded === panelItem} onChange={this.handleChange(panelItem)}>
@@ -30,17 +30,17 @@ class EmailListItem extends React.Component {
                             <Grid item xs={3}>
                                 <span className="heading">
                                     <span className="heading-icon"><AccountCircleRoundedIcon style={{ fontSize: 40}}/></span>
-                                    <span className="heading-text">Ken Jung</span>
+                                    <span className="heading-text">{recipient}</span>
                                 </span>
                             </Grid>
                             <Grid item xs={8}>
                                 <span className="text-preview">
                                     <span className="subject-text-preview">
-                                        I'm going to Hawaii! Kawaabunggaaaa!
+                                        {subject}
                                     </span> 
                                     &nbsp;-&nbsp;
                                     <span className="body-text-preview">
-                                        Hey Jimmy, I'm going to Hawaii. Take care of the cats for me!
+                                        {body}
                                     </span>
                                 </span>
                             </Grid>
@@ -61,10 +61,10 @@ class EmailListItem extends React.Component {
     render(){
         return(
             <div class="email-list-item">
-                {this.newEmail('panel1')}
-                {this.newEmail('panel2')}
-                {this.newEmail('panel3')}
-                {this.newEmail('panel4')}
+                {this.newEmail('panel1', "Ken Jung", "I'm going to Hawaii! Kawaabunggaaaa!", "Hey Jimmy, I'm going to Hawaii. Take care of the cats for me!")}
+                {this.newEmail('panel2', "Jimmy Nguyen", "I'm going to Hawaii! Kawaabunggaaaa!", "Hey Jimmy, I'm going to Hawaii. Take care of the cats for me!")}
+                {this.newEmail('panel3', "Colin Artero", "I'm going to Hawaii! Kawaabunggaaaa!", "Hey Jimmy, I'm going to Hawaii. Take care of the cats for me!")}
+                {this.newEmail('panel4', "Kevin Doan", "I'm going to Hawaii! Kawaabunggaaaa!", "Hey Jimmy, I'm going to Hawaii. Take care of the cats for me!")}
             </div>
         );
     }
