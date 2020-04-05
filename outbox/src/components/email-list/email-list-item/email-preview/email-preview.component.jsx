@@ -24,7 +24,7 @@ class EmailPreview extends React.Component {
                     spacing={3}
                     alignItems="center"
                 >
-                    <Grid item xs>
+                    <Grid item xs={2}>
                         <span className="heading">
                             <span className="heading-icon">
                                 <AccountCircleRoundedIcon style={{ fontSize: 40}}/>

@@ -28,7 +28,7 @@ class EmailListItem extends React.Component {
                     "panelItem": 'panel2',
                     "fromAddress": "Jimmy@outbox.io",
                     "toAddress": "Ken@outbox.io",
-                    "subject": "Drinks on me, old pal!!!!!!!!", // RE: I'm going to Hawaii! Kawaabunggaaaa!",
+                    "subject": "Drinks on me, old pal!!!!!!!! RE: I'm going to Hawaii! Kawaabunggaaaa!!!!!!!!!!!!!!!!!!!!!!!!!",
                     "body": "Hi Ken, Sounds good! Drink dem shots 4 me!",
                     "timestamp": "04/01/2020",
                 },
