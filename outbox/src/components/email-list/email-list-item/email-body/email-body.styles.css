@@ -1,0 +1,16 @@
+.email-body {
+    background-color: lightgreen;
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.from-address {
+    font-weight: bold;
+}
+
+.from-address-email {
+    opacity: 0.5;
+}
