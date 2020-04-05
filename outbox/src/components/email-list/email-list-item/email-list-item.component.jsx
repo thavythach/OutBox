@@ -6,6 +6,7 @@ import { Grid } from '@material-ui/core';
 import AccountCircleRoundedIcon from '@material-ui/icons/AccountCircleRounded';
 import Actions from '../../actions/actions.component';
 import EmailBody from "./email-body/email-body.component";
+import EmailPreview from "./email-preview/email-preview.component";
 
 class EmailListItem extends React.Component {
     
@@ -27,7 +28,7 @@ class EmailListItem extends React.Component {
                     "panelItem": 'panel2',
                     "fromAddress": "Jimmy@outbox.io",
                     "toAddress": "Ken@outbox.io",
-                    "subject": "I'm going to Hawaii! Kawaabunggaaaa!",
+                    "subject": "Drinks on me, old pal!!!!!!!!", // RE: I'm going to Hawaii! Kawaabunggaaaa!",
                     "body": "Hi Ken, Sounds good! Drink dem shots 4 me!",
                     "timestamp": "04/01/2020",
                 },
@@ -72,28 +73,14 @@ class EmailListItem extends React.Component {
             <div className="email-list-item-content">
                 <ExpansionPanel expanded={this.state.expanded === panelItem} onChange={this.handleChange(panelItem)}>
                     <ExpansionPanelSummary flex-grow={1}>
-                        <Grid container spacing={3} alignItems="center">
-                            <Grid item xs={3}>
-                                <span className="heading">
-                                    <span className="heading-icon"><AccountCircleRoundedIcon style={{ fontSize: 40}}/></span>
-                                    <span className="heading-text">{fromAddress}</span>
-                                </span>
-                            </Grid>
-                            <Grid item xs={8}>
-                                <span className="text-preview">
-                                    <span className="subject-text-preview">
-                                        {subject}
-                                    </span> 
-                                    &nbsp;-&nbsp;
-                                    <span className="body-text-preview">
-                                        {body}
-                                    </span>
-                                </span>
-                            </Grid>
-                            <Grid item xs={1}>
-                                <Actions/>
-                            </Grid>
-                        </Grid>
+                        <EmailPreview
+                            id={panelItem}
+                            fromAddress={fromAddress}
+                            toAddress={toAddress}
+                            subject={subject}
+                            body={body}
+                            timestamp={timestamp}   
+                        />
                     </ExpansionPanelSummary>
 
                     <ExpansionPanelDetails>
@@ -105,8 +92,7 @@ class EmailListItem extends React.Component {
                             subject={subject} 
                             body={body}
                             timestamp={timestamp}
-                        >
-                        </EmailBody>
+                        />
                         
                     </ExpansionPanelDetails>
                 </ExpansionPanel>

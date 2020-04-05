@@ -21,17 +21,17 @@
     padding-left: 10px;
 }
 
-.text-preview {
-
-}
-
 .subject-text-preview {
     font-weight: bold;
 }
 
 .body-text-preview {
-    /* padding-left: 10px; */
+    background-color: lightcoral;
     opacity: 0.5;
+    white-space: nowrap; 
+    width: 500px; 
+    overflow: hidden;
+    text-overflow: clip; 
 }
 
 .bleh {

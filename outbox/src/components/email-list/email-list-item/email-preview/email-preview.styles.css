@@ -1,0 +1,42 @@
+.email-preview {
+    /* background-color: lightseagreen; */
+    width: 100%;
+    padding: 10px;
+}
+
+.heading {
+
+}
+
+.heading-icon {
+    vertical-align: middle;
+}
+
+.heading-text {
+    font-weight: bold;
+    padding-left: 10px;
+}
+
+.subject-preview {
+    /* background-color: saddlebrown; */
+    font-weight: bold;
+    white-space: nowrap;
+    width: 500px;
+    overflow: ellipse;
+    text-overflow: ellipsis; 
+}
+
+.body-preview {
+    /* background-color: slateblue; */
+    opacity: 0.5;
+    white-space: nowrap; 
+    width: 500px; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}
+
+
+
+.body-preview:hover {
+    color: lightseagreen;
+}
