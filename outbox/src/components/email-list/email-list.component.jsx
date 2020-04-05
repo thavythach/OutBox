@@ -1,6 +1,6 @@
 import React from "react";
 
-import { List, ListItem, ListItemAvatar,ListItemSecondaryAction, ListItemText, Avatar, IconButton, Grid, EmailIcon, Container, ExpansionPanel, Typography, TextField, ExpansionPanelDetails, ExpansionPanelSummary, CssBaseline} from '@material-ui/core';
+import { Container, Typography, CssBaseline} from '@material-ui/core';
 
 import Actions from '../actions/actions.component';
 import EmailListItem from './email-list-item/email-list-item.component';

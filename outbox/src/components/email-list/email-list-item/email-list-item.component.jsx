@@ -1,11 +1,10 @@
 import React from 'react';
 
 import './email-list-item.styles.css';
-import { ExpansionPanel, ExpansionPanelSummary, Typography, ExpansionPanelDetails } from '@material-ui/core';
+import { ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails } from '@material-ui/core';
 import { Grid, Paper } from '@material-ui/core';
 import AccountCircleRoundedIcon from '@material-ui/icons/AccountCircleRounded';
 import Actions from '../../actions/actions.component';
-
 
 class EmailListItem extends React.Component {
     
@@ -14,6 +13,26 @@ class EmailListItem extends React.Component {
 
         this.state = {
             expanded: false,
+            inbox: [
+                {
+                    "panelItem": 'panel1',
+                    "recipient": "Ken Jung",
+                    "subject": "I'm going to Hawaii! Kawaabunggaaaa!",
+                    "body": "Hey Jimmy, I'm going to Hawaii. Take care of the cats for me!" 
+                },
+                {
+                    "panelItem": 'panel2',
+                    "recipient": "Jimmy Nguyen",
+                    "subject": "I'm going to Hawaii! Kawaabunggaaaa!",
+                    "body": "Hi Ken, Sounds good! Drink dem shots 4 me!" 
+                },
+                {
+                    "panelItem": 'panel3',
+                    "recipient": "Kevin Doan",
+                    "subject": "I'm going to Hawaii! Kawaabunggaaaa!",
+                    "body": "Yo Jimmy, Team Liquid 4 lyfe!" 
+                },
+            ],
         }
     }
 
@@ -21,7 +40,25 @@ class EmailListItem extends React.Component {
         this.setState({expanded: isExpanded ? panel : false})
     }
 
-    newEmail = (panelItem, recipient, subject, body) => {
+    populateInbox = () => {
+        const { inbox } = this.state;
+        return(
+            inbox.map(email=>(
+                <div key={email.panelItem}>
+                    {
+                        this.addEmail(
+                            email.panelItem, 
+                            email.recipient, 
+                            email.subject, 
+                            email.body
+                        )
+                    }
+                </div>
+            ))
+        );
+    }
+
+    addEmail = (panelItem, recipient, subject, body) => {
         return (
             <div className="email-list-item-content">
                 <ExpansionPanel expanded={this.state.expanded === panelItem} onChange={this.handleChange(panelItem)}>
@@ -60,11 +97,8 @@ class EmailListItem extends React.Component {
 
     render(){
         return(
-            <div class="email-list-item">
-                {this.newEmail('panel1', "Ken Jung", "I'm going to Hawaii! Kawaabunggaaaa!", "Hey Jimmy, I'm going to Hawaii. Take care of the cats for me!")}
-                {this.newEmail('panel2', "Jimmy Nguyen", "I'm going to Hawaii! Kawaabunggaaaa!", "Hey Jimmy, I'm going to Hawaii. Take care of the cats for me!")}
-                {this.newEmail('panel3', "Colin Artero", "I'm going to Hawaii! Kawaabunggaaaa!", "Hey Jimmy, I'm going to Hawaii. Take care of the cats for me!")}
-                {this.newEmail('panel4', "Kevin Doan", "I'm going to Hawaii! Kawaabunggaaaa!", "Hey Jimmy, I'm going to Hawaii. Take care of the cats for me!")}
+            <div className="email-list-item">
+                {this.populateInbox()}
             </div>
         );
     }
