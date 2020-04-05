@@ -51,31 +51,6 @@ class EmailPreview extends React.Component {
                         <Actions />
                     </Grid>
                 </Grid>
-
-                {/* <Grid container spacing={3} alignItems="center">
-                    <Grid item xs={3}>
-                        <span className="heading">
-                            <span className="heading-icon"><AccountCircleRoundedIcon style={{ fontSize: 40}}/></span>
-                            <span className="heading-text">{this.props.fromAddress}</span>
-                        </span>
-                    </Grid>
-                    <Grid item xs={8}>
-                        <div className="text-preview">
-                            <div className="email-preview subject-text-preview">
-                                {this.props.subject}
-                            </div> 
-                            <div className="email-preview">
-                                &nbsp;-&nbsp;
-                            </div>
-                            <div className="email-preview body-text-preview">
-                                {this.props.body}
-                            </div>
-                        </div>
-                    </Grid>
-                    <Grid item xs={1}>
-                        <Actions/>
-                    </Grid>
-                </Grid> */}
             </div>
         )
     }

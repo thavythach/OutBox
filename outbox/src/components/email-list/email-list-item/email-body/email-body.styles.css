@@ -14,3 +14,26 @@
 .from-address-email {
     opacity: 0.5;
 }
+
+.reply-form {
+    background-color: lightseagreen;
+    padding: 10px;
+}
+
+.content {
+    padding: 10px;
+}
+
+.reply-form-heading {
+    background-color: darksalmon;
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 10px;
+}
+
+.reply-actions {
+    background-color: darkseagreen;
+    margin-top: 10px;
+    padding: 10px;
+}
