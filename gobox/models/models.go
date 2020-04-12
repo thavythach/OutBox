@@ -12,15 +12,15 @@ type ToDoList struct {
 	Status bool               `json:"status,omitempty"`
 }
 
-// User user
-type User struct {
-	ID        primitive.ObjectID `json:"_id,omitempty" bson:"_id,omitempty"`
-	Address   string             `json:"address,omitempty"` // TODO: unique
-	Password  string             `json:"password,omitempty"`
-	FirstName string             `json:"firstname,omitempty"`
-	LastName  string             `json:"lastname,omitempty"`
-	DarkMode  bool               `json:"darkmode,omitempty"`
-}
+// // User user
+// type User struct {
+// 	ID        primitive.ObjectID `json:"_id,omitempty" bson:"_id,omitempty"`
+// 	Address   string             `json:"address,omitempty"` // TODO: unique
+// 	Password  string             `json:"password,omitempty"`
+// 	FirstName string             `json:"firstname,omitempty"`
+// 	LastName  string             `json:"lastname,omitempty"`
+// 	DarkMode  bool               `json:"darkmode,omitempty"`
+// }
 
 // Email email
 type Email struct {
