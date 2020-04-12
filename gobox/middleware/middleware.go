@@ -33,7 +33,7 @@ const collName = "Users"
 var collection *mongo.Collection
 
 //create connection with mongo db
-func init() {
+func Init() {
 
 	// set client options
 	clientOptions := options.Client().ApplyURI(connectionString)
@@ -59,114 +59,114 @@ func init() {
 	fmt.Println("Collection instance created!")
 }
 
-// CreateUser create user route
-func CreateUser(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Context-Type", "application/x-www-form-urlencoded")
-	w.Header().Set("Access-Control-Allow-Origin", "*")
-	w.Header().Set("Access-Control-Allow-Methods", "POST")
-	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+// // CreateUser create user route
+// func CreateUser(w http.ResponseWriter, r *http.Request) {
+// 	w.Header().Set("Context-Type", "application/x-www-form-urlencoded")
+// 	w.Header().Set("Access-Control-Allow-Origin", "*")
+// 	w.Header().Set("Access-Control-Allow-Methods", "POST")
+// 	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
 
-	var user models.User
-	_ = json.NewDecoder(r.Body).Decode(&user)
-	insertUser(user)
-	json.NewEncoder(w).Encode(user)
-}
+// 	var user models.User
+// 	_ = json.NewDecoder(r.Body).Decode(&user)
+// 	insertUser(user)
+// 	json.NewEncoder(w).Encode(user)
+// }
 
-// insert one user into the database
-func insertUser(user models.User) {
-	insertResult, err := collection.InsertOne(context.Background(), user)
+// // insert one user into the database
+// func insertUser(user models.User) {
+// 	insertResult, err := collection.InsertOne(context.Background(), user)
 
-	if err != nil {
-		log.Fatal(err)
-	}
-	fmt.Println("Inserted a Single User Record", insertResult.InsertedID)
+// 	if err != nil {
+// 		log.Fatal(err)
+// 	}
+// 	fmt.Println("Inserted a Single User Record", insertResult.InsertedID)
 
-}
+// }
 
-// GetAllUsers get all users
-func GetAllUsers(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Context-Type", "application/x-www-form-urlencoded")
-	w.Header().Set("Access-Control-Allow-Origin", "*")
+// // GetAllUsers get all users
+// func GetAllUsers(w http.ResponseWriter, r *http.Request) {
+// 	w.Header().Set("Context-Type", "application/x-www-form-urlencoded")
+// 	w.Header().Set("Access-Control-Allow-Origin", "*")
 
-	payload := getAllUsers()
-	json.NewEncoder(w).Encode(payload)
-}
+// 	payload := getAllUsers()
+// 	json.NewEncoder(w).Encode(payload)
+// }
 
-// getAllUsers
-func getAllUsers() []primitive.M {
-	cur, err := collection.Find(context.Background(), bson.D{{}})
+// // getAllUsers
+// func getAllUsers() []primitive.M {
+// 	cur, err := collection.Find(context.Background(), bson.D{{}})
 
-	if err != nil {
-		log.Fatal(err)
-	}
+// 	if err != nil {
+// 		log.Fatal(err)
+// 	}
 
-	var results []primitive.M
-	for cur.Next(context.Background()) {
-		var result bson.M
-		e := cur.Decode(&result)
-		if e != nil {
-			log.Fatal(e)
-		}
+// 	var results []primitive.M
+// 	for cur.Next(context.Background()) {
+// 		var result bson.M
+// 		e := cur.Decode(&result)
+// 		if e != nil {
+// 			log.Fatal(e)
+// 		}
 
-		results = append(results, result)
-	}
+// 		results = append(results, result)
+// 	}
 
-	if err := cur.Err(); err != nil {
-		log.Fatal(err)
-	}
+// 	if err := cur.Err(); err != nil {
+// 		log.Fatal(err)
+// 	}
 
-	cur.Close(context.Background())
+// 	cur.Close(context.Background())
 
-	return results
+// 	return results
 
-}
+// }
 
-// GetUser via id
-func GetUser(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Context-Type", "application/x-www-form-urlencoded")
-	w.Header().Set("Access-Control-Allow-Origin", "*")
+// // GetUser via id
+// func GetUser(w http.ResponseWriter, r *http.Request) {
+// 	w.Header().Set("Context-Type", "application/x-www-form-urlencoded")
+// 	w.Header().Set("Access-Control-Allow-Origin", "*")
 
-	params := mux.Vars(r)
-	user := getUser(params["id"])
-	json.NewEncoder(w).Encode(user)
-}
+// 	params := mux.Vars(r)
+// 	user := getUser(params["id"])
+// 	json.NewEncoder(w).Encode(user)
+// }
 
-func getUser(userID string) models.User {
-	fmt.Println("is this the right USERID yooo", userID)
+// func getUser(userID string) models.User {
+// 	fmt.Println("is this the right USERID yooo", userID)
 
-	result := models.User{}
-	id, _ := primitive.ObjectIDFromHex(userID)
-	filter := bson.M{"_id": id}
-	collection.FindOne(context.Background(), filter).Decode(&result)
+// 	result := models.User{}
+// 	id, _ := primitive.ObjectIDFromHex(userID)
+// 	filter := bson.M{"_id": id}
+// 	collection.FindOne(context.Background(), filter).Decode(&result)
 
-	fmt.Println("we got the data", result)
-	return result
-}
+// 	fmt.Println("we got the data", result)
+// 	return result
+// }
 
-// DeleteUser lol
-func DeleteUser(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Context-Type", "application/x-www-form-urlencoded")
-	w.Header().Set("Access-Control-Allow-Origin", "*")
-	w.Header().Set("Access-Control-Allow-Methods", "DELETE")
-	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+// // DeleteUser lol
+// func DeleteUser(w http.ResponseWriter, r *http.Request) {
+// 	w.Header().Set("Context-Type", "application/x-www-form-urlencoded")
+// 	w.Header().Set("Access-Control-Allow-Origin", "*")
+// 	w.Header().Set("Access-Control-Allow-Methods", "DELETE")
+// 	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
 
-	params := mux.Vars(r)
-	deleteUser(params["id"])
-	json.NewEncoder(w).Encode(params["id"])
-	// json.NewEncoder(w).Encode("Task not found")
-}
+// 	params := mux.Vars(r)
+// 	deleteUser(params["id"])
+// 	json.NewEncoder(w).Encode(params["id"])
+// 	// json.NewEncoder(w).Encode("Task not found")
+// }
 
-// delete one user from the DB, delete by ID
-func deleteUser(userID string) {
-	fmt.Println(userID)
-	id, _ := primitive.ObjectIDFromHex(userID)
-	filter := bson.M{"_id": id}
-	d, err := collection.DeleteOne(context.Background(), filter)
+// // delete one user from the DB, delete by ID
+// func deleteUser(userID string) {
+// 	fmt.Println(userID)
+// 	id, _ := primitive.ObjectIDFromHex(userID)
+// 	filter := bson.M{"_id": id}
+// 	d, err := collection.DeleteOne(context.Background(), filter)
 
-	if err != nil {
-		log.Fatal(err)
-	}
+// 	if err != nil {
+// 		log.Fatal(err)
+// 	}
 
-	fmt.Println("Deleted document", d.DeletedCount)
-}
+// 	fmt.Println("Deleted document", d.DeletedCount)
+// }
 
