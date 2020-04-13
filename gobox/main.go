@@ -1,31 +1,62 @@
 package main
 
 import (
-	emc "gobox/controller"
+	"context"
+	"fmt"
+	"gobox/middleware"
+	"log"
 
-	"github.com/gin-gonic/gin"
-	mw "gobox/middleware"
-	// "go.mongodb.org/mongo-driver/mongo"
-	// "go.mongodb.org/mongo-driver/mongo/options"
+	// "github.com/gin-gonic/gin"
+	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
 func main() {
-	// start gin server
 
-	mw.Init()
-	router := gin.Default()
-	//create router group
-	v1 := router.Group("/api/v1")
-	{
-		emailControl := new(emc.EmailController)
-		v1.GET("/email", emailControl.Default)
-		v1.GET("/user", emailControl.Default)
-		// router.POST("/email/emailid", emailPOST)
-		// router.DELETE("/email/emailid", emailDELETE)
-		// router.GET("/stream/:emailid", stream)
+	test := middleware.NewConnection()
+	collection := test.Use("test", "Users")
+
+	cur, err := collection.Find(context.Background(), bson.D{{}})
+
+	if err != nil {
+		log.Fatal(err)
 	}
-	router.NoRoute(func(c *gin.Context) {
-		c.JSON(404, gin.H{"message": "Not Found"})
-	})
-	router.Run()
+
+	var results []primitive.M
+	for cur.Next(context.Background()) {
+		var result bson.M
+		e := cur.Decode(&result)
+		if e != nil {
+			log.Fatal(e)
+		}
+
+		results = append(results, result)
+	}
+
+	if err := cur.Err(); err != nil {
+		log.Fatal(err)
+	}
+
+	cur.Close(context.Background())
+
+	fmt.Println("test", results)
+
+	/*
+		// start gin server
+		router := gin.Default()
+
+		//create router group
+		v1 := router.Group("/api/v1")
+		{
+			emailControl := new(emc.EmailController)
+			v1.GET("/email/user", emailControl.Default)
+			// router.POST("/email/emailid", emailPOST)
+			// router.DELETE("/email/emailid", emailDELETE)
+			// router.GET("/stream/:emailid", stream)
+		}
+		router.NoRoute(func(c *gin.Context) {
+			c.JSON(404, gin.H{"message": "Not Found"})
+		})
+		router.Run()
+	*/
 }

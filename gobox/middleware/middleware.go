@@ -1,61 +1,58 @@
-package middlware
+package middleware
 
 import (
 	"context"
-	"encoding/json"
 	"fmt"
+	config "gobox/environments"
 	"log"
-	"net/http"
+	"time"
 
-	env "gobox/environments"
-	// "gobox/models"
-
-	// "github.com/gorilla/mux"
-
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/mongo/readpref"
 )
 
-//DB Connection string
-// for localhost string
-// const connectionString = "mongodb;//localhost:27017"
-var connectionString = ("mongodb+srv://" + env.GetEnv("DBUSER") + ":" + env.GetEnv("DBPASSWORD") + "@outbox-r7ux8.mongodb.net/test?retryWrites=true&w=majority")
+// DBConnection defines the connection structure
+type DBConnection struct {
+	session *mongo.Client
+	context context.Context
+}
 
-// Database name
-const dbName = "test"
+// NewConnection handles connecting to a mongo database
+func NewConnection() (conn *DBConnection) {
 
-// Collection name
-const collName = "Users"
+	// define connection information
+	dbhost := "mongodb+srv://"
+	dbuser := config.GetEnv("DBUSER")
+	dbpass := config.GetEnv("DBPASSWORD")
+	dbname := "@outbox-r7ux8.mongodb.net/test?retryWrites=true&w=majority"
 
-// collection object/instance
-var collection *mongo.Collection
+	connection := fmt.Sprintf("%s%s:%s%s", dbhost, dbuser, dbpass, dbname)
 
-func Init() {
-
-	// set client options
-	clientOptions := options.Client().ApplyURI(connectionString)
-
-	// connect to mongoDB
-	client, err := mongo.Connect(context.TODO(), clientOptions)
+	// configure client to connect
+	client, err := mongo.NewClient(options.Client().ApplyURI(connection))
 
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	// check the connection
-	err = client.Ping(context.TODO(), nil)
+	ctx, _ := context.WithTimeout(context.Background(), 10*time.Second)
+
+	err = client.Connect(ctx)
 
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	fmt.Println("Connected to MongoDB!")
+	// ping
+	err = client.Ping(ctx, readpref.Primary())
 
-	collection = client.Database(dbName).Collection(collName)
+	if err != nil {
+		log.Fatal(err)
+	}
 
-	fmt.Println("Collection instance created!")
+	conn = &DBConnection{client, ctx}
+	return conn
 }
 
 // // CreateUser create user route
@@ -168,4 +165,13 @@ func GetAllUsersFromDatabase() []primitive.M {
 
 // 	fmt.Println("Deleted document", d.DeletedCount)
 // }
+// Use test
+func (conn *DBConnection) Use(dbName string, colName string) (collection *mongo.Collection) {
+	return conn.session.Database(dbName).Collection(colName)
+}
 
+// TODO: make this actually work
+// Close handles closing the db connection with the database
+func (conn *DBConnection) Close() {
+	conn.session.Disconnect(conn.context)
+}
