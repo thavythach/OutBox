@@ -8,9 +8,9 @@ import (
 	"net/http"
 
 	env "gobox/environments"
-	"gobox/models"
+	// "gobox/models"
 
-	"github.com/gorilla/mux"
+	// "github.com/gorilla/mux"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -32,7 +32,6 @@ const collName = "Users"
 // collection object/instance
 var collection *mongo.Collection
 
-//create connection with mongo db
 func Init() {
 
 	// set client options
@@ -83,43 +82,43 @@ func Init() {
 
 // }
 
-// // GetAllUsers get all users
-// func GetAllUsers(w http.ResponseWriter, r *http.Request) {
-// 	w.Header().Set("Context-Type", "application/x-www-form-urlencoded")
-// 	w.Header().Set("Access-Control-Allow-Origin", "*")
+// GetAllUsers get all users
+func GetAllUsers(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Context-Type", "application/x-www-form-urlencoded")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
 
-// 	payload := getAllUsers()
-// 	json.NewEncoder(w).Encode(payload)
-// }
+	payload := GetAllUsersFromDatabase()
+	json.NewEncoder(w).Encode(payload)
+}
 
-// // getAllUsers
-// func getAllUsers() []primitive.M {
-// 	cur, err := collection.Find(context.Background(), bson.D{{}})
+// GetAllUsersFromDatabase
+func GetAllUsersFromDatabase() []primitive.M {
+	cur, err := collection.Find(context.Background(), bson.D{{}})
 
-// 	if err != nil {
-// 		log.Fatal(err)
-// 	}
+	if err != nil {
+		log.Fatal(err)
+	}
 
-// 	var results []primitive.M
-// 	for cur.Next(context.Background()) {
-// 		var result bson.M
-// 		e := cur.Decode(&result)
-// 		if e != nil {
-// 			log.Fatal(e)
-// 		}
+	var results []primitive.M
+	for cur.Next(context.Background()) {
+		var result bson.M
+		e := cur.Decode(&result)
+		if e != nil {
+			log.Fatal(e)
+		}
 
-// 		results = append(results, result)
-// 	}
+		results = append(results, result)
+	}
 
-// 	if err := cur.Err(); err != nil {
-// 		log.Fatal(err)
-// 	}
+	if err := cur.Err(); err != nil {
+		log.Fatal(err)
+	}
 
-// 	cur.Close(context.Background())
+	cur.Close(context.Background())
 
-// 	return results
+	return results
 
-// }
+} 
 
 // // GetUser via id
 // func GetUser(w http.ResponseWriter, r *http.Request) {
