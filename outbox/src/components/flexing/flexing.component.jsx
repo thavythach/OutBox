@@ -12,6 +12,13 @@ export default class Flexing extends React.Component {
     this.state = {
       flexing: "Flexing begins",
       spacing: 3,
+      config: {
+          navVariant: {
+              xs: 'temporary',
+              sm: 'persistent',
+              md: 'permanent',
+          }
+      }
     };
   }
 

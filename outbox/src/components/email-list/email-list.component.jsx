@@ -20,14 +20,14 @@ class EmailList extends React.Component {
         
         return(
             <div className="email-list">
-                <React.Fragment>
-                    <CssBaseline />
-                    <Container maxWidth="xl">
-                        <Typography component="div" style={{ backgroundColor: '#cfe8fc', height: '100vh' }}>
+                {/* <React.Fragment> */}
+                    {/* <CssBaseline /> */}
+                    {/* <Container maxWidth="xl"> */}
+                        {/* <Typography component="div" style={{ backgroundColor: '#cfe8fc', height: '100vh' }}> */}
                             <EmailListItem className="email-list-item"></EmailListItem>
-                        </Typography>
-                    </Container>
-                </React.Fragment>
+                        {/* </Typography> */}
+                    {/* </Container> */}
+                {/* </React.Fragment> */}
             </div>
         );
     }
