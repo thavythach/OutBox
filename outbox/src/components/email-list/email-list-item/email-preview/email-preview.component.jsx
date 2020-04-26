@@ -24,7 +24,8 @@ class EmailPreview extends React.Component {
                     spacing={3}
                     alignItems="center"
                 >
-                    <Grid item xs={2}>
+                    {/* item 1 */}
+                    <Grid item xs={12} sm={2}>
                         <span className="heading">
                             <span className="heading-icon">
                                 <AccountCircleRoundedIcon style={{ fontSize: 40}}/>
@@ -35,19 +36,22 @@ class EmailPreview extends React.Component {
                         </span>
                     </Grid>
                     
-                    <Grid item xs>
+                    {/* item 2 */}
+                    <Grid item xs={12} sm={5}>
                         <div className="subject-preview">
                             {this.props.subject}
                         </div>
                     </Grid>
 
-                    <Grid item xs>
+                    {/* item 3 */}
+                    <Grid item xs={12} sm={4}>
                         <div className="body-preview">
                             {this.props.body}
                         </div>
                     </Grid>
                     
-                    <Grid item xs={1}>
+                    {/* item 4 */}
+                    <Grid item xs={12} sm={1}>
                         <Actions />
                     </Grid>
                 </Grid>
