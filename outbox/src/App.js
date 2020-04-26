@@ -22,8 +22,7 @@ class App extends Component {
   render(){
     return(
       <div className="App">
-        <MenuAppBar color={this.state.color}>
-        </MenuAppBar>
+        {/* <MenuAppBar color={this.state.color}></MenuAppBar> */}
         {/* <EmailList></EmailList> */}
         <Flexing></Flexing>
 

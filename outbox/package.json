@@ -15,10 +15,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-responsive-image": "^5.0.0",
     "react-scripts": "^3.4.0",
-    "react-simple-flex-grid": "^1.3.21",
-    "semantic-ui-css": "^2.4.1"
   },
   "scripts": {
     "start": "react-scripts start",
