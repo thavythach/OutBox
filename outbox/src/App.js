@@ -4,6 +4,7 @@ import MenuAppBar from './components/menuappbar/menuappbar.component.jsx'
 // import EmailList from './components/list/list.component.jsx';
 import User from './components/user/user.component.jsx'; 
 import EmailList from './components/email-list/email-list.component.jsx';
+import Flexing from './components/flexing/flexing.component.jsx';
 
 
 class App extends Component {
@@ -23,7 +24,8 @@ class App extends Component {
       <div className="App">
         <MenuAppBar color={this.state.color}>
         </MenuAppBar>
-        <EmailList></EmailList>
+        {/* <EmailList></EmailList> */}
+        <Flexing></Flexing>
 
       </div>
       
