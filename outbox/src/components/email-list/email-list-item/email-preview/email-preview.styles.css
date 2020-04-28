@@ -4,7 +4,7 @@
     background-color: lightseagreen;
     display: flex;
     font-size: 12px;
-    width: 100%;
+    width: 60vw;
 }
 
 .heading-grid {
@@ -21,7 +21,6 @@
 }
 
 .heading-text {
-    padding-left: 10px;
     font-weight: bold;
     white-space: nowrap;
     overflow: hidden;
@@ -51,14 +50,18 @@
 
 .body-content {
     background-color: orchid;
-    width: 100px;
-    margin-right: auto;
+    overflow: hidden;
 }
 
 .body-text {
     opacity: 0.5;
     white-space: nowrap;
-    width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+/* time */
+
+.time-preview {
+    text-align: right;
 }

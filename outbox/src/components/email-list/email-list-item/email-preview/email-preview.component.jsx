@@ -27,20 +27,16 @@ class EmailPreview extends React.Component {
                     wrap="nowrap"
                 >
                     {/* item 1 */}
-                    <Grid item xs={4} sm={3} className="heading-grid">
-                        <span className="heading-content">
-                            <span className="heading-icon">
-                                <AccountCircleRoundedIcon style={{ fontSize: 24 }}/>
-                            </span>
-
-                            <span className="heading-text">
+                    <Grid item xs={2} className="heading-grid">
+                        <div className="heading-content">
+                            <p className="heading-text">
                                 {this.props.fromAddress}
-                            </span>
-                        </span>
+                            </p>
+                        </div>
                     </Grid>
                     
                     {/* item 2 */}
-                    <Grid item xs={4} sm={4} className="subject-grid">
+                    <Grid item xs={4} className="subject-grid">
                         <div className="subject-content">
                             <p className="subject-text">
                                 {this.props.subject}
@@ -49,7 +45,7 @@ class EmailPreview extends React.Component {
                     </Grid>
 
                     {/* item 3 */}
-                    <Grid item xs={4} sm={4} className="body-grid">
+                    <Grid item xs={4} className="body-grid">
                         <div className="body-content">
                             <p className="body-text">
                                 {this.props.body}
@@ -58,7 +54,7 @@ class EmailPreview extends React.Component {
                     </Grid>
                     
                     {/* item 4 */}
-                    <Grid item xs={4} sm={1}>
+                    <Grid item xs={2}>
                         {/* <Actions /> */}
                         <div className="flex-time-content">
                             <p className="time-preview">

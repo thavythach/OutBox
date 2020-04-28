@@ -72,6 +72,7 @@ class EmailListItem extends React.Component {
         return (
             <div className="email-list-item-content">
                 <div className="expansion">
+                    <br/>
                     <ExpansionPanel expanded={this.state.expanded === panelItem} onChange={this.handleChange(panelItem)}>
                         <ExpansionPanelSummary flex-grow={1}>
                             <EmailPreview
@@ -85,16 +86,17 @@ class EmailListItem extends React.Component {
                         </ExpansionPanelSummary>
 
                         <ExpansionPanelDetails>
-                            {/* <EmailBody 
+                            <EmailBody 
                                 id={panelItem} 
                                 fromAddress={fromAddress} 
                                 toAddress={toAddress} 
                                 subject={subject} 
                                 body={body}
                                 timestamp={timestamp}
-                            />    */}
+                            />   
                         </ExpansionPanelDetails>
                     </ExpansionPanel>
+                    <br/>
                 </div>
             </div>
         )
