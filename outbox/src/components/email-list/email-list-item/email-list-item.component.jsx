@@ -1,7 +1,7 @@
 import React from 'react';
 
 import './email-list-item.styles.css';
-import { ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails } from '@material-ui/core';
+import { ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails, Typography } from '@material-ui/core';
 import { Grid } from '@material-ui/core';
 import AccountCircleRoundedIcon from '@material-ui/icons/AccountCircleRounded';
 import Actions from '../../actions/actions.component';
@@ -71,31 +71,31 @@ class EmailListItem extends React.Component {
     addEmail = (panelItem, fromAddress, toAddress, subject, body, timestamp) => {
         return (
             <div className="email-list-item-content">
-                <ExpansionPanel expanded={this.state.expanded === panelItem} onChange={this.handleChange(panelItem)}>
-                    <ExpansionPanelSummary flex-grow={1}>
-                        <EmailPreview
-                            id={panelItem}
-                            fromAddress={fromAddress}
-                            toAddress={toAddress}
-                            subject={subject}
-                            body={body}
-                            timestamp={timestamp}   
-                        />
-                    </ExpansionPanelSummary>
+                <div className="expansion">
+                    <ExpansionPanel expanded={this.state.expanded === panelItem} onChange={this.handleChange(panelItem)}>
+                        <ExpansionPanelSummary flex-grow={1}>
+                            <EmailPreview
+                                id={panelItem}
+                                fromAddress={fromAddress}
+                                toAddress={toAddress}
+                                subject={subject}
+                                body={body}
+                                timestamp={timestamp}
+                            />
+                        </ExpansionPanelSummary>
 
-                    <ExpansionPanelDetails>
-
-                        <EmailBody 
-                            id={panelItem} 
-                            fromAddress={fromAddress} 
-                            toAddress={toAddress} 
-                            subject={subject} 
-                            body={body}
-                            timestamp={timestamp}
-                        />
-                        
-                    </ExpansionPanelDetails>
-                </ExpansionPanel>
+                        <ExpansionPanelDetails>
+                            {/* <EmailBody 
+                                id={panelItem} 
+                                fromAddress={fromAddress} 
+                                toAddress={toAddress} 
+                                subject={subject} 
+                                body={body}
+                                timestamp={timestamp}
+                            />    */}
+                        </ExpansionPanelDetails>
+                    </ExpansionPanel>
+                </div>
             </div>
         )
     }

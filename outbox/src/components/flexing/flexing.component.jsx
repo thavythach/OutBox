@@ -30,8 +30,12 @@ export default class Flexing extends React.Component {
             <Grid container spacing={this.state.spacing}>
                 
                 {/* two */}
-                <Grid item xs={12} sm={6}>Test 12-6</Grid>
-                <Grid item xs={12} sm={6}>Test 12-6</Grid>
+                <Grid item xs={4} sm={2}>Test 12-6</Grid>
+                <Grid item xs={4} sm={2}>Test 12-6</Grid>
+                <Grid item xs={4} sm={2}>Test 12-6</Grid>
+                <Grid item xs={4} sm={2}>Test 12-6</Grid>
+                <Grid item xs={4} sm={2}>Test 12-6</Grid>
+                <Grid item xs={4} sm={2}>Test 12-6</Grid>
 
                 {/* two */}
                 <Grid item xs={12} sm={6}>Test 12-6</Grid>

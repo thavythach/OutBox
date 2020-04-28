@@ -1,9 +1,19 @@
+/* new css */
+
 .email-preview {
-    /* background-color: lightseagreen; */
-    width: 100%;
-    padding: 10px;
-    flex-grow: 1;
+    background-color: lightseagreen;
+    display: flex;
     font-size: 12px;
+    width: 100%;
+}
+
+.heading-grid {
+    background-color: lightcoral;
+    flex-basis: auto;
+}
+
+.heading-content {
+    background-color: seagreen;
 }
 
 .heading-icon {
@@ -11,30 +21,44 @@
 }
 
 .heading-text {
-    font-weight: bold;
     padding-left: 10px;
-}
-
-.subject-preview {
-    /* background-color: saddlebrown; */
     font-weight: bold;
     white-space: nowrap;
-    width: 500px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.subject-grid {
+    background-color: lightgoldenrodyellow;
+    flex-basis: auto;
+}
+
+.subject-content {
+    background-color: orange
+}
+
+.subject-text {
+    font-weight: bold;
+    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis; 
 }
 
-.body-preview {
-    /* background-color: slateblue; */
+.body-grid {
+    background-color: lightgrey;
+    flex-basis: auto;
+}
+
+.body-content {
+    background-color: orchid;
+    width: 100px;
+    margin-right: auto;
+}
+
+.body-text {
     opacity: 0.5;
-    white-space: nowrap; 
-    width: 500px; 
+    white-space: nowrap;
+    width: 100%;
     overflow: hidden;
-    text-overflow: ellipsis; 
-}
-
-
-
-.body-preview:hover {
-    color: lightseagreen;
+    text-overflow: ellipsis;
 }
