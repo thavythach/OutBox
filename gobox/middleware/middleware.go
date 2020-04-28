@@ -6,10 +6,15 @@ import (
 	config "gobox/environments"
 	"log"
 	"time"
+	// "encoding/json"
+	// "net/http"
 
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"go.mongodb.org/mongo-driver/mongo/readpref"
+	// "go.mongodb.org/mongo-driver/bson"
+	// "go.mongodb.org/mongo-driver/bson/primitive"
+	
 )
 
 // DBConnection defines the connection structure
@@ -17,6 +22,7 @@ type DBConnection struct {
 	session *mongo.Client
 	context context.Context
 }
+
 
 // NewConnection handles connecting to a mongo database
 func NewConnection() (conn *DBConnection) {
@@ -52,6 +58,7 @@ func NewConnection() (conn *DBConnection) {
 	}
 
 	conn = &DBConnection{client, ctx}
+	// collection = client.Database(dbname).Collection("Users")
 	return conn
 }
 
@@ -78,44 +85,6 @@ func NewConnection() (conn *DBConnection) {
 // 	fmt.Println("Inserted a Single User Record", insertResult.InsertedID)
 
 // }
-
-// GetAllUsers get all users
-func GetAllUsers(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Context-Type", "application/x-www-form-urlencoded")
-	w.Header().Set("Access-Control-Allow-Origin", "*")
-
-	payload := GetAllUsersFromDatabase()
-	json.NewEncoder(w).Encode(payload)
-}
-
-// GetAllUsersFromDatabase
-func GetAllUsersFromDatabase() []primitive.M {
-	cur, err := collection.Find(context.Background(), bson.D{{}})
-
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	var results []primitive.M
-	for cur.Next(context.Background()) {
-		var result bson.M
-		e := cur.Decode(&result)
-		if e != nil {
-			log.Fatal(e)
-		}
-
-		results = append(results, result)
-	}
-
-	if err := cur.Err(); err != nil {
-		log.Fatal(err)
-	}
-
-	cur.Close(context.Background())
-
-	return results
-
-} 
 
 // // GetUser via id
 // func GetUser(w http.ResponseWriter, r *http.Request) {
