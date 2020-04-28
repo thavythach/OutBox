@@ -6,15 +6,9 @@ import (
 	config "gobox/environments"
 	"log"
 	"time"
-	// "encoding/json"
-	// "net/http"
-
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"go.mongodb.org/mongo-driver/mongo/readpref"
-	// "go.mongodb.org/mongo-driver/bson"
-	// "go.mongodb.org/mongo-driver/bson/primitive"
-	
 )
 
 // DBConnection defines the connection structure
@@ -22,7 +16,6 @@ type DBConnection struct {
 	session *mongo.Client
 	context context.Context
 }
-
 
 // NewConnection handles connecting to a mongo database
 func NewConnection() (conn *DBConnection) {
@@ -43,7 +36,6 @@ func NewConnection() (conn *DBConnection) {
 	}
 
 	ctx, _ := context.WithTimeout(context.Background(), 10*time.Second)
-
 	err = client.Connect(ctx)
 
 	if err != nil {
@@ -58,7 +50,6 @@ func NewConnection() (conn *DBConnection) {
 	}
 
 	conn = &DBConnection{client, ctx}
-	// collection = client.Database(dbname).Collection("Users")
 	return conn
 }
 

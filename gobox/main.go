@@ -12,15 +12,9 @@ func main() {
 	test := middleware.NewConnection()
 	collection := test.Use("test", "Users")
 
-	// cur, err := collection.Find(context.Background(), bson.D{{}})
-
-	// if err != nil {
-	// 	log.Fatal(err)
-	// }
-
-	
 	// start gin server
 	router := gin.Default()
+	// test out the results
 	results := controller.GetAllUsersFromDatabase(collection)
 	fmt.Println("test", results)
 	
@@ -29,7 +23,7 @@ func main() {
 	emailControl.Collection = collection
 	v1 := router.Group("/api/v1")
 	{
-		v1.GET("/email", emailControl.Default)
+		v1.GET("/users", emailControl.GetUsers)
 		// router.POST("/email/emailid", emailPOST)
 		// router.DELETE("/email/emailid", emailDELETE)
 		// router.GET("/stream/:emailid", stream)

@@ -13,21 +13,12 @@ type EmailController struct{
 	Collection *mongo.Collection
 }
 
-func (e *EmailController) Default(c *gin.Context) {
-
+func (e *EmailController) GetUsers(c *gin.Context) {
+	c.Writer.Header().Set("Context-Type", "application/x-www-form-urlencoded")
+	c.Writer.Header().Set("Access-Control-Allow-Origin", "*")
 	results := GetAllUsersFromDatabase(e.Collection)
 	c.JSON(200, gin.H{"results": results})
 }
-
-//TODO fix this so it can be easily called in Default()
-// GetAllUsers get all users
-// func GetAllUsers(w http.ResponseWriter, r *http.Request, collection *mongo.Collection) {
-// 	c.Writer.Header().Set("Context-Type", "application/x-www-form-urlencoded")
-// 	c.Writer.Header().Set("Access-Control-Allow-Origin", "*")
-
-// 	payload := GetAllUsersFromDatabase(collection)
-// 	json.NewEncoder(c.Writer).Encode(payload)
-// }
 
 // GetAllUsersFromDatabase
 func GetAllUsersFromDatabase(collection *mongo.Collection) []primitive.M {
