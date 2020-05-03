@@ -13,13 +13,18 @@ class EmailPreview extends React.Component {
         super(props);
 
         this.state = {
-            
+            hover: false,
         }
+    }
+
+    toggleHover = () => {
+        console.log("hello");
+        this.setState({hover: !this.state.hover});
     }
 
     render () {
         return (
-            <div className="email-preview">
+            <div className="email-preview" onMouseEnter={this.toggleHover} onMouseLeave={this.toggleHover}>
                 <Grid 
                     container
                     spacing={1}
@@ -27,7 +32,7 @@ class EmailPreview extends React.Component {
                     wrap="nowrap"
                 >
                     {/* item 1 */}
-                    <Grid item xs={12} sm={2} className="heading-grid">
+                    <Grid item xs={2} className="heading-grid">
                         <div className="heading-content">
                             <p className="heading-text">
                                 {this.props.fromAddress}
@@ -36,7 +41,7 @@ class EmailPreview extends React.Component {
                     </Grid>
                     
                     {/* item 2 */}
-                    <Grid item xs={12} sm={4} className="subject-grid">
+                    <Grid item xs={4} className="subject-grid">
                         <div className="subject-content">
                             <p className="subject-text">
                                 {this.props.subject}
@@ -45,7 +50,7 @@ class EmailPreview extends React.Component {
                     </Grid>
 
                     {/* item 3 */}
-                    <Grid item xs={12} sm={4} className="body-grid">
+                    <Grid item xs={4} className="body-grid">
                         <div className="body-content">
                             <p className="body-text">
                                 {this.props.body}
@@ -54,12 +59,12 @@ class EmailPreview extends React.Component {
                     </Grid>
                     
                     {/* item 4 */}
-                    <Grid item xs={12} sm={2}>
-                        {/* <Actions /> */}
+                    <Grid item xs={2} className="time-grid">
                         <div className="flex-time-content">
-                            <p className="time-preview">
-                                4:20 PM
-                            </p>
+                            <span className="time-preview">
+                                { !this.state.hover && (<span>4:20 PM</span>) }
+                                { this.state.hover && <Actions />}
+                            </span>
                         </div>
                     </Grid>
                 </Grid>
