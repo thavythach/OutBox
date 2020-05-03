@@ -36,7 +36,7 @@ class EmailPreview extends React.Component {
                     </Grid>
                     
                     {/* item 2 */}
-                    <Grid item xs={4} className="subject-grid">
+                    <Grid item xs={5} className="subject-grid">
                         <div className="subject-content">
                             <p className="subject-text">
                                 {this.props.subject}
@@ -54,7 +54,7 @@ class EmailPreview extends React.Component {
                     </Grid>
                     
                     {/* item 4 */}
-                    <Grid item xs={2}>
+                    <Grid item xs={1}>
                         {/* <Actions /> */}
                         <div className="flex-time-content">
                             <p className="time-preview">

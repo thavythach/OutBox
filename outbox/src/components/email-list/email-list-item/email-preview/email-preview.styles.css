@@ -1,19 +1,19 @@
 /* new css */
 
 .email-preview {
-    background-color: lightseagreen;
+    /* background-color: lightseagreen; */
     display: flex;
     font-size: 12px;
     width: 60vw;
 }
 
 .heading-grid {
-    background-color: lightcoral;
+    /* background-color: lightcoral; */
     flex-basis: auto;
 }
 
 .heading-content {
-    background-color: seagreen;
+    /* background-color: seagreen; */
 }
 
 .heading-icon {
@@ -28,12 +28,12 @@
 }
 
 .subject-grid {
-    background-color: lightgoldenrodyellow;
+    /* background-color: lightgoldenrodyellow; */
     flex-basis: auto;
 }
 
 .subject-content {
-    background-color: orange
+    /* background-color: orange */
 }
 
 .subject-text {
@@ -44,12 +44,12 @@
 }
 
 .body-grid {
-    background-color: lightgrey;
+    /* background-color: lightgrey; */
     flex-basis: auto;
 }
 
 .body-content {
-    background-color: orchid;
+    /* background-color: orchid; */
     overflow: hidden;
 }
 
@@ -63,5 +63,6 @@
 /* time */
 
 .time-preview {
+    background-color: green;
     text-align: right;
 }

@@ -1,13 +1,15 @@
 .email-list-item-content{
-    background-color: lightgreen;
+    /* background-color: lightgreen; */
     padding-top: 5px;
-    padding-bottom: 5px;
+    padding-bottom: 5px; 
     padding-left: 150px;
     padding-right: 150px;
-    font-size: 16px;    
+    font-size: 12px;    
 }
 
 .expansion {
     background-color: aliceblue;
+    padding-top: 10px;
+    padding-bottom: 10px;
     overflow: hidden;
 }

@@ -72,7 +72,6 @@ class EmailListItem extends React.Component {
         return (
             <div className="email-list-item-content">
                 <div className="expansion">
-                    <br/>
                     <ExpansionPanel expanded={this.state.expanded === panelItem} onChange={this.handleChange(panelItem)}>
                         <ExpansionPanelSummary flex-grow={1}>
                             <EmailPreview
