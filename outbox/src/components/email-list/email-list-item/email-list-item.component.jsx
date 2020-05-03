@@ -7,6 +7,7 @@ import AccountCircleRoundedIcon from '@material-ui/icons/AccountCircleRounded';
 import Actions from '../../actions/actions.component';
 import EmailBody from "./email-body/email-body.component";
 import EmailPreview from "./email-preview/email-preview.component";
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 class EmailListItem extends React.Component {
     
@@ -82,6 +83,14 @@ class EmailListItem extends React.Component {
                                 body={body}
                                 timestamp={timestamp}
                             />
+
+
+                            {/* <FormControlLabel
+                                aria-label="Acknowledge"
+                                onClick={(event) => event.stopPropagation()}
+                                onFocus={(event) => event.stopPropagation()}
+                                control={<Actions />}
+                            /> */}
                         </ExpansionPanelSummary>
 
                         <ExpansionPanelDetails>
