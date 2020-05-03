@@ -27,7 +27,7 @@ class EmailPreview extends React.Component {
                     wrap="nowrap"
                 >
                     {/* item 1 */}
-                    <Grid item xs={2} className="heading-grid">
+                    <Grid item xs={12} sm={2} className="heading-grid">
                         <div className="heading-content">
                             <p className="heading-text">
                                 {this.props.fromAddress}
@@ -36,7 +36,7 @@ class EmailPreview extends React.Component {
                     </Grid>
                     
                     {/* item 2 */}
-                    <Grid item xs={5} className="subject-grid">
+                    <Grid item xs={12} sm={4} className="subject-grid">
                         <div className="subject-content">
                             <p className="subject-text">
                                 {this.props.subject}
@@ -45,7 +45,7 @@ class EmailPreview extends React.Component {
                     </Grid>
 
                     {/* item 3 */}
-                    <Grid item xs={4} className="body-grid">
+                    <Grid item xs={12} sm={4} className="body-grid">
                         <div className="body-content">
                             <p className="body-text">
                                 {this.props.body}
@@ -54,7 +54,7 @@ class EmailPreview extends React.Component {
                     </Grid>
                     
                     {/* item 4 */}
-                    <Grid item xs={1}>
+                    <Grid item xs={12} sm={2}>
                         {/* <Actions /> */}
                         <div className="flex-time-content">
                             <p className="time-preview">

@@ -20,7 +20,6 @@ class EmailList extends React.Component {
         
         return(
             <div className="email-list">
-                <br/>
                 <EmailListItem className="email-list-item"></EmailListItem>
             </div>
         );

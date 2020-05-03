@@ -23,7 +23,9 @@ class App extends Component {
     return(
       <div className="App">
         <MenuAppBar color={this.state.color}></MenuAppBar>
+        <br/>
         <EmailList></EmailList>
+        <br/>
         <Flexing></Flexing>
 
       </div>
