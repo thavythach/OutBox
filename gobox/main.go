@@ -2,23 +2,35 @@ package main
 
 import (
 	"fmt"
-	"log"
-	"net/http"
-	
-	// env "gobox/environments"
-	"gobox/router"
-
+	"gobox/middleware"
+	"gobox/controller"
+	"github.com/gin-gonic/gin"
 )
 
 func main() {
-	// fmt.Println(environments.GetEnv("DBUSER"))
-	// fmt.Println(environments.GetEnv("DBPASSWORD"))
 
-	r := router.Router()
+	test := middleware.NewConnection()
+	collection := test.Use("test", "Users")
 
-	fmt.Println("Starting server on the port 8080")
-	log.Fatal(http.ListenAndServe(":8080", r))
-
+	// start gin server
+	router := gin.Default()
+	// test out the results
+	results := controller.GetAllUsersFromDatabase(collection)
+	fmt.Println("test", results)
 	
-}
+	//create router group
+	emailControl := new(controller.EmailController)
+	emailControl.Collection = collection
+	v1 := router.Group("/api/v1")
+	{
+		v1.GET("/users", emailControl.GetUsers)
+		// router.POST("/email/emailid", emailPOST)
+		// router.DELETE("/email/emailid", emailDELETE)
+		// router.GET("/stream/:emailid", stream)
+	}
+	router.NoRoute(func(c *gin.Context) {
+		c.JSON(404, gin.H{"message": "Not Found"})
+	})
+	router.Run()
 
+}

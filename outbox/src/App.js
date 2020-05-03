@@ -13,7 +13,7 @@ class App extends Component {
     super(props);
 
     this.state = {
-      color: '#655b39',
+      color: '#655b39', 
     };
 
 

@@ -1,0 +1,7 @@
+.root{
+    flex-grow: 1;
+}
+.demo{
+    /* TODO probably have this rely on some theme instead of constant */
+    background-color: white;
+}
