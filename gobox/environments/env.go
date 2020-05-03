@@ -1,15 +1,15 @@
 package environments
 
-import(
-	"os"
+import (
 	"log"
-	
+	"os"
+
 	"github.com/joho/godotenv"
 )
 
-// use godot package to load/read the .env file and return the value of the key
+// GetEnv use godot package to load/read the .env file and return the value of the key
 func GetEnv(key string) string {
-	
+
 	// load .env file
 	err := godotenv.Load("test.env")
 
