@@ -22,11 +22,9 @@ class DeleteAction extends React.Component {
 
     render(props){
         return(
-            <div className="DeleteAction">
-                <IconButton onClick={this.sendDeleteData}>
-                    <DeleteIcon/>
-                </IconButton>
-            </div>
+            <IconButton onClick={this.sendDeleteData}>
+                <DeleteIcon fontSize="small"/>
+            </IconButton>
         )
     }
 

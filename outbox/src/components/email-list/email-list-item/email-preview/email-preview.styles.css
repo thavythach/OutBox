@@ -5,15 +5,8 @@
     display: flex;
     font-size: 12px;
     width: 90vw;
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
-
-.email-preview:hover {
-    display: flex;
-    font-size: 12px;
-    width: 90vw;
-    /* border: 1px solid black; */
+    /* padding-top: 10px; */
+    /* padding-bottom: 10px; */
 }
 
 .heading-grid {
@@ -79,4 +72,8 @@
 
 .flex-time-content {
     /* display: none;     */
+}
+
+.test {
+    border: 1px black;
 }

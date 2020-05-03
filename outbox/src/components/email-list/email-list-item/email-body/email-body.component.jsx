@@ -20,7 +20,6 @@ class EmailBody extends React.Component {
     }
 
     calculateTimePast = () => {
-        console.log("calculate time")
         let time = this.props.timestamp;
         return (
             <span className="past-calculation">

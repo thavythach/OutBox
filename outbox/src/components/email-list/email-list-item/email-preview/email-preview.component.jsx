@@ -3,6 +3,9 @@ import React from 'react';
 import { Grid } from '@material-ui/core';
 import AccountCircleRoundedIcon from '@material-ui/icons/AccountCircleRounded';
 import Actions from '../../../actions/actions.component';
+import PinningAction from '../../../pinningaction/pinningaction.component.jsx';
+import SnoozeAction from '../../../snoozeaction/snoozeaction.component.jsx';
+import DeleteAction from '../../../deleteaction/deleteaction.component.jsx';
 
 import './email-preview.styles.css';
 import { Typography } from '@material-ui/core';
@@ -14,17 +17,46 @@ class EmailPreview extends React.Component {
 
         this.state = {
             hover: false,
+            isPinned: null,
+            snoozeDate: null,
+            isDeleted: false,
         }
     }
 
     toggleHover = () => {
-        console.log("hello");
         this.setState({hover: !this.state.hover});
     }
 
+    deleteCallback = (data) => {
+        this.setState({ isDeleted: data}, () => {
+            
+            // TODO: delete animation occurs when delete from screen happens.
+            if (this.state.isDeleted){
+                console.log("DELETED!");
+            }
+        });
+    }
+
+    snoozeCallback = (date) => {
+        this.setState({snoozeDate: date}, () => {console.log("the real date: " + this.state.snoozeDate);});
+    }
+
+    pinCallback  =  (data)  =>  {
+        this.setState({isPinned: data}, () => {
+            if (this.state.isPinned){
+                console.log("Email Pinned");
+                // TODO: add to list of emails in DB
+            } else {
+                console.log("Email Unpinned");
+                // TODO: remove from list of emails in DB
+            }
+        });
+    }
+
+
     render () {
         return (
-            <div className="email-preview" onMouseEnter={this.toggleHover} onMouseLeave={this.toggleHover}>
+            <div className="email-preview {this.state.hover ? test : test2}" onMouseEnter={this.toggleHover} onMouseLeave={this.toggleHover}>
                 <Grid 
                     container
                     spacing={1}
@@ -63,7 +95,15 @@ class EmailPreview extends React.Component {
                         <div className="flex-time-content">
                             <span className="time-preview">
                                 { !this.state.hover && (<span>4:20 PM</span>) }
-                                { this.state.hover && <Actions />}
+                                { 
+                                    this.state.hover && (
+                                    <div className="actions-content">
+                                        <PinningAction className="actions-item" pinCallback={this.pinCallback}/>
+                                        <SnoozeAction className="actions-item" snoozeCallback={this.snoozeCallback}/>
+                                        <DeleteAction className="actions-item" deleteCallback={this.deleteCallback}/>
+                                    </div>
+                                    )
+                                }
                             </span>
                         </div>
                     </Grid>
