@@ -77,3 +77,10 @@
 .test {
     border: 1px black;
 }
+
+.actions-content {
+    /* background-color: lightblue; */
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+}

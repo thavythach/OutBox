@@ -83,14 +83,6 @@ class EmailListItem extends React.Component {
                                 body={body}
                                 timestamp={timestamp}
                             />
-
-
-                            {/* <FormControlLabel
-                                aria-label="Acknowledge"
-                                onClick={(event) => event.stopPropagation()}
-                                onFocus={(event) => event.stopPropagation()}
-                                control={<Actions />}
-                            /> */}
                         </ExpansionPanelSummary>
 
                         <ExpansionPanelDetails>
