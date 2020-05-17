@@ -18,20 +18,39 @@ class EmailListItem extends React.Component {
 
         this.state = {
             expanded: false,
-            added: [],
+            available: {},
             inbox: emailData,
         }
 
-        this.prepareEmailForRender();
+        this.getEmails();
     }
 
-    prepareEmailForRender() {
+    getEmails() {
         console.log("inbox", this.state.inbox);
-
         this.state.inbox.forEach(email => {
+            const key = uuid();
+            email['panelItem'] = key;
+            this.state.available[key] = email;
             console.log("individual email", email);
-            this.state.added.push(email);
+            console.log("Available", this.state.available);
+            // this.removeEmail(key);
         });
+    }
+
+    removeEmail(key){
+        console.log("key", key, this.state.available);
+        if (this.state.available.hasOwnProperty(key)){
+            delete this.state.available[key]
+            console.log("nice", this.state.available);
+        }
+    }
+        
+    addFakeEmail() {
+        let email = emailData[0]; 
+        email['panelItem'] = uuid();
+        this.state.available[email['content']] = email;
+        console.log("Fake: ", email);
+        console.log("Available", this.state.available);
     }
 
     handleChange = (panel) => (event, isExpanded) => {
@@ -53,24 +72,12 @@ class EmailListItem extends React.Component {
                             email.timestamp
                         )
                     }
-
-                    {/* {this.state.added.push(email.panelItem)} */}
                 </div>
             ))
         );
     }
-    
-    addDummyEmailItem() {
-        let email = emailData[0];
-        console.log("test", email, email['panelItem']);
-        email['panelItem'] = uuid() 
-        this.state.added.push(email['panelItem']);
-        console.log("Added: ", this.state.added);
-        console.log("test", email, email['panelItem']);
-    }
 
     addEmail = (panelItem, fromAddress, toAddress, subject, body, timestamp) => {
-
         return (
             <div className="email-list-item-content">
                 <div className="expansion">
@@ -106,9 +113,9 @@ class EmailListItem extends React.Component {
     render(){
         return(
             <div className="email-list-item">
-                {/* {this.populateInbox()}
-                <Button onClick={this.addDummyEmailItem}>help</Button> */}
-                <Button onClick={console.log(this.state.added)}>What's been added?</Button>
+                {/* {this.populateInbox()} */}
+                <Button onClick={() => this.addFakeEmail()}>Add Fake</Button>
+                <Button onClick={() => console.log("Available: ", this.state.available)}>List</Button>
             </div>
         );
     }
