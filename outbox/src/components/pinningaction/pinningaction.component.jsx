@@ -29,7 +29,7 @@ class PinningAction extends React.Component {
     render(props){
         return(
             <IconButton onClick={this.sendPinData}>
-                <FiberPinIcon fontSize="small" color={ this.state.isPinned ? "primary" : "inherit" }></FiberPinIcon>
+                <FiberPinIcon fontSize="small" color={ this.state.isPinned ? "primary" : "gray" }></FiberPinIcon>
             </IconButton>
         );
     }
