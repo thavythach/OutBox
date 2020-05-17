@@ -31,9 +31,6 @@ class EmailListItem extends React.Component {
             const key = uuid();
             email['panelItem'] = key;
             this.state.available[key] = email;
-            console.log("individual email", email);
-            console.log("Available", this.state.available);
-            // this.removeEmail(key);
         });
     }
 
@@ -41,20 +38,37 @@ class EmailListItem extends React.Component {
         console.log("key", key, this.state.available);
         if (this.state.available.hasOwnProperty(key)){
             delete this.state.available[key]
-            console.log("nice", this.state.available);
+            console.log("Successfully removed!", this.state.available);
         }
     }
         
     addFakeEmail() {
         let email = emailData[0]; 
         email['panelItem'] = uuid();
-        this.state.available[email['content']] = email;
+        this.state.available[email['panelItem']] = email;
         console.log("Fake: ", email);
         console.log("Available", this.state.available);
     }
 
     handleChange = (panel) => (event, isExpanded) => {
         this.setState({expanded: isExpanded ? panel : false})
+    }
+
+    refreshInbox = () => {
+        const { available } = this.state;
+        console.log("REFRESH: ", available);
+
+        return(
+            <div>
+                {
+                    Object.keys(available).map((key, index)=>(
+                        <div key={key}>
+                            
+                        </div>
+                    ))
+                }
+            </div>
+        );
     }
 
     populateInbox = () => {
@@ -113,6 +127,7 @@ class EmailListItem extends React.Component {
     render(){
         return(
             <div className="email-list-item">
+                {this.refreshInbox()}
                 {/* {this.populateInbox()} */}
                 <Button onClick={() => this.addFakeEmail()}>Add Fake</Button>
                 <Button onClick={() => console.log("Available: ", this.state.available)}>List</Button>

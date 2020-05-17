@@ -26,7 +26,7 @@ class App extends Component {
         <br/>
         <EmailList></EmailList>
         <br/>
-        <Flexing></Flexing>
+        {/* <Flexing></Flexing> */}
 
       </div>
       
