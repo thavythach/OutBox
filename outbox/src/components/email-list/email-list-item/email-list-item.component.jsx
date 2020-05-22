@@ -17,7 +17,7 @@ class EmailListItem extends React.Component {
         super(props)
 
         this.state = {
-            expanded: false,
+            expanded: '',
             available: {},
             inbox: emailData,
         }
@@ -43,15 +43,21 @@ class EmailListItem extends React.Component {
     }
         
     addFakeEmail() {
+
         let email = emailData[0]; 
         email['panelItem'] = uuid();
-        this.state.available[email['panelItem']] = email;
+        
+        let ye = { ...this.state.available };
+        ye[email['panelItem']] = email;
+        this.setState({ available: ye });
+        
         console.log("Fake: ", email);
         console.log("Available", this.state.available);
     }
 
     handleChange = (panel) => (event, isExpanded) => {
-        this.setState({expanded: isExpanded ? panel : false})
+        console.log("ie", isExpanded, panel);
+        this.setState({expanded: isExpanded ? panel : ''})
     }
 
     refreshInbox = () => {
@@ -59,31 +65,17 @@ class EmailListItem extends React.Component {
         console.log("REFRESH: ", available);
 
         return(
-            <div>
-                {
-                    Object.keys(available).map((key, index)=>(
-                        <div key={key}>
-                            
-                        </div>
-                    ))
-                }
-            </div>
-        );
-    }
-
-    populateInbox = () => {
-        const { inbox } = this.state;
-        return(
-            inbox.map(email=>(
-                <div key={email.panelItem}>
-                    {
+            Object.keys(available).map((key, index)=>(
+                <div key={key}>
+                    Key: {key} {console.log('test', available[key])}
+                    { 
                         this.addEmail(
-                            email.panelItem, 
-                            email.fromAddress,
-                            email.toAddress, 
-                            email.subject, 
-                            email.body,
-                            email.timestamp
+                            available[key].panelItem,
+                            available[key].fromAddress,
+                            available[key].toAddress,
+                            available[key].subject,
+                            available[key].body,
+                            available[key].timestamp
                         )
                     }
                 </div>
@@ -128,7 +120,6 @@ class EmailListItem extends React.Component {
         return(
             <div className="email-list-item">
                 {this.refreshInbox()}
-                {/* {this.populateInbox()} */}
                 <Button onClick={() => this.addFakeEmail()}>Add Fake</Button>
                 <Button onClick={() => console.log("Available: ", this.state.available)}>List</Button>
             </div>
