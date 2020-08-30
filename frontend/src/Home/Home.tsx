@@ -79,12 +79,23 @@ interface IState {
 class Home extends Component<IProps, IState> {
     constructor(props: IProps) {
         super(props);
+
+        /** localStorage **/
+        let matchday;
+        if (localStorage.getItem('lastFetchedMatchday')) {
+            matchday = Number(localStorage.getItem('lastFetchedMatchday'));
+        } else {
+            matchday = 1;
+            localStorage.setItem('lastFetchedMatchday', matchday.toString());
+        }
+        
+         /** localStorage **/
         this.state = {
-        matchday: 1,
-        matches: [],
-        competition: null,
-        error: false,
-        totalMatchdays: 38,
+            matchday,
+            matches: [],
+            competition: null,
+            error: false,
+            totalMatchdays: 38,
         };
     }
 
@@ -109,6 +120,9 @@ class Home extends Component<IProps, IState> {
 
     handleChange = (event: any) => {
         this.setState({ matchday: event.target.value }, () => {
+            /** localStorage **/
+            localStorage.setItem('lastFetchedMatchday', this.state.matchday.toString());
+            /** localStorage **/
             this.fetch();
         });
     };
