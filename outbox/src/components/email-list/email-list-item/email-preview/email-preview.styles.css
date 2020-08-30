@@ -1,11 +1,21 @@
+/* new css */
+
 .email-preview {
     /* background-color: lightseagreen; */
-    width: 100%;
-    padding: 10px;
+    display: flex;
+    font-size: 12px;
+    width: 90vw;
+    /* padding-top: 10px; */
+    /* padding-bottom: 10px; */
 }
 
-.heading {
+.heading-grid {
+    /* background-color: lightcoral; */
+    flex-basis: auto;
+}
 
+.heading-content {
+    /* background-color: seagreen; */
 }
 
 .heading-icon {
@@ -14,29 +24,63 @@
 
 .heading-text {
     font-weight: bold;
-    padding-left: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-.subject-preview {
-    /* background-color: saddlebrown; */
+.subject-grid {
+    /* background-color: lightgoldenrodyellow; */
+    flex-basis: auto;
+}
+
+.subject-content {
+    /* background-color: orange */
+}
+
+.subject-text {
     font-weight: bold;
     white-space: nowrap;
-    width: 500px;
-    overflow: ellipse;
-    text-overflow: ellipsis; 
-}
-
-.body-preview {
-    /* background-color: slateblue; */
-    opacity: 0.5;
-    white-space: nowrap; 
-    width: 500px; 
     overflow: hidden;
     text-overflow: ellipsis; 
 }
 
+.body-grid {
+    /* background-color: lightgrey; */
+    flex-basis: auto;
+}
 
+.body-content {
+    /* background-color: orchid; */
+    overflow: hidden;
+}
 
-.body-preview:hover {
-    color: lightseagreen;
+.body-text {
+    opacity: 0.5;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* time */
+
+.time-preview {
+    /* background-color: green; */
+    float: right;
+    /* align-items: right; */
+}
+
+.flex-time-content {
+    /* display: none;     */
+}
+
+.test {
+    border: 1px black;
+}
+
+.actions-content {
+    /* background-color: lightblue; */
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
 }

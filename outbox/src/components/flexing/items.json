@@ -1,0 +1,28 @@
+[
+    { "text": "Home" },
+    { "text": "Blog",
+      "items": [
+        { "text": "JavaScript" },
+        { "text": "React" },
+        { "text": "Apollo" },
+        { "text": "GraphQL" }
+      ]
+    },
+    {
+      "text": "Bookings",
+      "items": [
+        { "text": "Conferences",
+          "items": [
+            { "text": "Future Events" },
+            { "text": "Past Events" }
+          ]
+        },
+        { "text": "Meetups",
+          "items": [
+            { "text": "Future Events" },
+            { "text": "Past Events" }
+          ]
+        }
+      ]
+    }
+  ]

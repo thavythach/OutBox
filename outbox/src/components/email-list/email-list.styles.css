@@ -1,8 +1,5 @@
 .email-list {
-    color: green !important;
-    padding: 100px;
-}
-
-.email-list-item {
-    padding: 10px;
+    background-color: teal;
+    padding-bottom: 10px;
+    padding-top: 10px;
 }

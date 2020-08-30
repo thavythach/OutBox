@@ -1,39 +1,13 @@
 .email-list-item-content{
-    /* padding: 100px; */
-    padding-top: 5px;
-    padding-bottom: 5px;
-    padding-left: 150px;
-    padding-right: 150px;
-    font-size: 16px;
-    
+    /* background-color: lightgreen; */
+    padding-left: 50px;
+    padding-right: 50px;
+    font-size: 12px;
 }
 
-.heading {
-
-}
-
-.heading-icon {
-    vertical-align: middle;
-}
-
-.heading-text {
-    font-weight: bold;
-    padding-left: 10px;
-}
-
-.subject-text-preview {
-    font-weight: bold;
-}
-
-.body-text-preview {
-    background-color: lightcoral;
-    opacity: 0.5;
-    white-space: nowrap; 
-    width: 500px; 
-    overflow: hidden;
-    text-overflow: clip; 
-}
-
-.bleh {
-    border-left: solid 1px blue;
+.expansion {
+    /* background-color: aliceblue; */
+    /* padding-top: 10px; */
+    /* padding-bottom: 10px; */
+    /* overflow: hidden; */
 }
